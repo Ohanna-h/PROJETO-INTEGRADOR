@@ -1,0 +1,31 @@
+IMAGENS — STATUS ATUAL
+==================================================
+Praticamente todas as imagens já estão incluídas neste zip, organizadas
+e otimizadas para web (comprimidas de ~91MB para ~18MB, sem perda visível
+de qualidade — importante pro totem com internet instável).
+
+O que ainda falta:
+- campus/ — uma foto histórica do Sr. Stênio Lopes (a pessoa que dá nome
+  à unidade), para a seção "A história por trás do nome" na página Sobre.
+  Só existem fotos do prédio por enquanto. Quando tiver essa foto, salve
+  como frontend/imagens/campus/stenio-historia.jpeg e ajuste o
+  <img> correspondente em frontend/sobre.html (procure por
+  "history-photo-wrap").
+
+Sobre os cursos:
+- As imagens e os títulos dos 18 cursos já são os reais que você enviou.
+- Carga horária, turno e vagas foram preenchidos com valores de EXEMPLO
+  (placeholder) porque eu não tinha a informação oficial de cada curso.
+  Edite pelo painel administrativo (ou direto no seed.sql) antes de
+  apresentar o projeto, com os números reais do SENAI.
+
+Sobre o logo:
+- Cabeçalho e rodapé usam logos diferentes (por escolha sua):
+  cabeçalho -> logo-senai.png | rodapé -> logo-senai-completa.png
+- O favicon usa o símbolo "Si" (Logo SI mais próxima), por ser mais
+  quadrado e legível em tamanho pequeno.
+
+Sobre o campus:
+- O carrossel da página Sobre já mostra fotos das DUAS unidades
+  (Stênio Lopes e Rosiélio Porto), cada uma com sua legenda.
+

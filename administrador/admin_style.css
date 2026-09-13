@@ -1,0 +1,32 @@
+/* ============================================================
+ * Plataforma SENAI Stênio Lopes — admin_style.css
+ * A maior parte do visual do painel (cores, cards, formulário)
+ * já vem de /frontend/css/estilo.css, que é compartilhado com o
+ * site público. Este arquivo só ajusta detalhes específicos da
+ * tela de administração.
+ * ============================================================ */
+
+#tela-login {
+  min-height: 100vh;
+}
+
+.admin-login-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.admin-login-back:hover {
+  color: var(--ink);
+}
+
+#login-erro {
+  justify-content: center;
+}
+
+.admin-course-list #lista-cursos .admin-course-row:first-child {
+  border-top: 0;
+}
