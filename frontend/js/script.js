@@ -5,7 +5,7 @@
  * ============================================================ */
 
 const NIVEIS = ["Todos", "Técnico", "Qualificação", "Aperfeiçoamento"];
-const AREA_TODOS = { nome: "Todos", icone_url: "/imagens/icones/icone-todos.png" };
+const AREA_TODOS = { nome: "Todos", icone_url: "imagens/icones/icone-todos.png" };
 
 const estado = {
   cursos: [],
@@ -65,7 +65,7 @@ async function carregarDados() {
 // com internet instável.
 async function carregarCatalogoOffline() {
   try {
-    const resposta = await fetch("/js/cursos.json");
+    const resposta = await fetch("js/cursos.json");
     const dados = await resposta.json();
     estado.cursos = dados.cursos;
     estado.areas = [AREA_TODOS, ...dados.areas];
@@ -145,7 +145,7 @@ function criarCardCurso(curso) {
       </div>
     </button>`;
   artigo.querySelector(".course-card-open").addEventListener("click", () => {
-    window.location.href = `/curso-detalhes.html?id=${curso.id}`;
+  window.location.href = `curso-detalhes.html?id=${curso.id}`;
   });
   return artigo;
 }
@@ -194,11 +194,11 @@ function iconeSeta() {
 /* ---------------------- Mascote Stênio ---------------------- */
 
 const POSES_MASCOTE = {
-  welcome: "/imagens/mascote/stenio-joinha.png",
-  pointing: "/imagens/mascote/stenio-mostrando.png",
-  thinking: "/imagens/mascote/stenio-pensando-normal.png",
-  thinkingHappy: "/imagens/mascote/stenio-pensando-feliz.png",
-  neutral: "/imagens/mascote/stenio-normal.png",
+  welcome: "imagens/mascote/stenio-joinha.png",
+  pointing: "imagens/mascote/stenio-mostrando.png",
+  thinking: "imagens/mascote/stenio-pensando-normal.png",
+  thinkingHappy: "imagens/mascote/stenio-pensando-feliz.png",
+  neutral: "imagens/mascote/stenio-normal.png",
 };
 
 function falarComoMascote(mensagem, humor = "welcome") {
@@ -332,7 +332,7 @@ function iniciarBoasVindas() {
   document.getElementById("botao-continuar-resposta").addEventListener("click", () => {
     fechar();
     if (escolhaAtual === "sobre") {
-      window.location.href = "/sobre.html";
+      window.location.href = "sobre.html";
       return;
     }
     if (escolhaAtual === "cursos") {
@@ -436,6 +436,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   }, 550);
 
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/service_woker.js").catch((erro) => console.warn("Service worker não registrado:", erro));
+    navigator.serviceWorker.register("service_woker.js").catch((erro) => console.warn("Service worker não registrado:", erro));
   }
 });
