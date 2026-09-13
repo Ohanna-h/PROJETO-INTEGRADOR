@@ -4,13 +4,13 @@
  * ============================================================ */
 
 const SLIDES_CAMPUS = [
-  { imagem: "/imagens/campus/campus-fachada.jpg", legenda: "Fachada — SENAI Stênio Lopes" },
-  { imagem: "/imagens/campus/campus-recepcao.jpg", legenda: "Recepção — SENAI Stênio Lopes" },
-  { imagem: "/imagens/campus/campus-lazer.jpg", legenda: "Área de convivência — SENAI Stênio Lopes" },
-  { imagem: "/imagens/campus/campus-cantina.jpg", legenda: "Cantina — SENAI Stênio Lopes" },
-  { imagem: "/imagens/campus/campus-vista-geral.jpg", legenda: "Vista do campus — SENAI Stênio Lopes" },
-  { imagem: "/imagens/campus/campus-rosielio-fachada.jpg", legenda: "Fachada — SENAI Rosiélio Porto" },
-  { imagem: "/imagens/campus/campus-rosielio-instalacoes.jpg", legenda: "Instalações — SENAI Rosiélio Porto" },
+  { imagem: "imagens/campus/campus-fachada.jpg", legenda: "Fachada — SENAI Stênio Lopes" },
+  { imagem: "imagens/campus/campus-recepcao.jpg", legenda: "Recepção — SENAI Stênio Lopes" },
+  { imagem: "imagens/campus/campus-lazer.jpg", legenda: "Área de convivência — SENAI Stênio Lopes" },
+  { imagem: "imagens/campus/campus-cantina.jpg", legenda: "Cantina — SENAI Stênio Lopes" },
+  { imagem: "imagens/campus/campus-vista-geral.jpg", legenda: "Vista do campus — SENAI Stênio Lopes" },
+  { imagem: "imagens/campus/campus-rosielio-fachada.jpg", legenda: "Fachada — SENAI Rosiélio Porto" },
+  { imagem: "imagens/campus/campus-rosielio-instalacoes.jpg", legenda: "Instalações — SENAI Rosiélio Porto" },
 ];
 
 let slideAtivo = 0;
