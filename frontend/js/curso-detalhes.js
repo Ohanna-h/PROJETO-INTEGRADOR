@@ -16,7 +16,7 @@ async function buscarCurso(id) {
     return cursos.find((curso) => String(curso.id) === String(id)) || null;
   } catch (erro) {
     console.warn("API indisponível, buscando no catálogo offline:", erro);
-    const resposta = await fetch("/js/cursos.json");
+    const resposta = await fetch("js/cursos.json");
     const dados = await resposta.json();
     return dados.cursos.find((curso) => String(curso.id) === String(id)) || null;
   }
