@@ -418,6 +418,7 @@ function iniciarVLibras() {
 document.addEventListener("DOMContentLoaded", async () => {
   document.title = "Inicial | SENAI Stênio Lopes";
   iniciarCabecalho();
+  ocultarAdminForaDoAmbienteLocal();
   iniciarMascote();
   iniciarBoasVindas();
   iniciarBusca();
@@ -439,3 +440,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     navigator.serviceWorker.register("service_woker.js").catch((erro) => console.warn("Service worker não registrado:", erro));
   }
 });
+
+/* ---------------------- Visibilidade da área admin ---------------------- */
+
+function ocultarAdminForaDoAmbienteLocal() {
+  const estaNoGithubPages = window.location.hostname.includes("github.io");
+  if (!estaNoGithubPages) return;
+  document.querySelectorAll(".header-admin, .mobile-admin").forEach((elemento) => {
+    elemento.style.display = "none";
+  });
+}
