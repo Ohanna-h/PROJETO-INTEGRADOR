@@ -17,6 +17,8 @@ function paraFrontend(curso) {
     dicaMascote: curso.dica_mascote,
     destaque: curso.destaque,
     imagemUrl: curso.imagem_url,
+    disponivel: Boolean(curso.disponivel),
+    atualizadoEm: curso.atualizado_em,
   };
 }
 
@@ -40,17 +42,30 @@ async function prepararDados(body) {
     dicaMascote: String(body.dicaMascote || "").trim(),
     destaque: body.destaque ? String(body.destaque).trim() : null,
     imagemUrl: String(body.imagemUrl || "").trim(),
+    disponivel: body.disponivel === undefined ? true : Boolean(body.disponivel),
   };
 }
 
-// GET /api/cursos — catálogo público.
+// GET /api/cursos — catálogo público. Só cursos disponíveis.
 async function listar(req, res) {
   try {
-    const cursos = await CursoModel.listarTodos();
+    const cursos = await CursoModel.listarDisponiveis();
     return res.json(cursos.map(paraFrontend));
   } catch (erro) {
     console.error("[cursosController.listar]", erro);
     return res.status(500).json({ erro: "Erro ao carregar o catálogo de cursos." });
+  }
+}
+
+// GET /api/cursos/admin (protegida) — todos os cursos, disponíveis
+// ou não, para o painel administrativo gerenciar.
+async function listarParaAdmin(req, res) {
+  try {
+    const cursos = await CursoModel.listarTodosParaAdmin();
+    return res.json(cursos.map(paraFrontend));
+  } catch (erro) {
+    console.error("[cursosController.listarParaAdmin]", erro);
+    return res.status(500).json({ erro: "Erro ao carregar os cursos para o painel." });
   }
 }
 
@@ -84,6 +99,22 @@ async function atualizar(req, res) {
   }
 }
 
+// PATCH /api/cursos/:id/disponibilidade (protegida)
+// Alterna disponível/indisponível sem reenviar o formulário inteiro.
+async function alternarDisponibilidade(req, res) {
+  try {
+    const disponivel = Boolean(req.body.disponivel);
+    const curso = await CursoModel.alternarDisponibilidade(req.params.id, disponivel);
+    if (!curso) {
+      return res.status(404).json({ erro: "Curso não encontrado." });
+    }
+    return res.json(paraFrontend(curso));
+  } catch (erro) {
+    console.error("[cursosController.alternarDisponibilidade]", erro);
+    return res.status(500).json({ erro: "Erro ao alterar a disponibilidade do curso." });
+  }
+}
+
 // DELETE /api/cursos/:id (protegida)
 async function remover(req, res) {
   try {
@@ -95,4 +126,11 @@ async function remover(req, res) {
   }
 }
 
-module.exports = { listar, criar, atualizar, remover };
+module.exports = {
+  listar,
+  listarParaAdmin,
+  criar,
+  atualizar,
+  alternarDisponibilidade,
+  remover,
+};

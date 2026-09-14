@@ -59,12 +59,14 @@ CREATE TABLE IF NOT EXISTS cursos (
   dica_mascote TEXT NOT NULL,
   destaque VARCHAR(80) NULL,
   imagem_url VARCHAR(255) NOT NULL,
+  disponivel BOOLEAN NOT NULL DEFAULT TRUE,
   criado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   atualizado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   CONSTRAINT fk_cursos_area FOREIGN KEY (area_id) REFERENCES areas(id)
     ON UPDATE CASCADE ON DELETE RESTRICT,
   INDEX idx_cursos_area (area_id),
   INDEX idx_cursos_nivel (nivel)
+  INDEX idx_cursos_disponivel (disponivel),
 ) ENGINE=InnoDB;
 
 -- ------------------------------------------------------------
