@@ -22,11 +22,11 @@
     },
     {
       "nome": "Vestuário e Couro",
-      "icone_url": "imagens/icones/vestuario.png"
+      "icone_url": "imagens/icones/icone-vestuario.png"
     },
     {
       "nome": "Alimentos",
-      "icone_url": "imagens/icones/alimentos.png"
+      "icone_url": "imagens/icones/icone-alimentos.png"
     }
   ],
   "cursos": [
