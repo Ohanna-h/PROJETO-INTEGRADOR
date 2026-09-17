@@ -67,7 +67,7 @@ async function carregarCatalogoOffline() {
   try {
     const resposta = await fetch("js/cursos.json");
     const dados = await resposta.json();
-    estado.cursos = dados.cursos;
+    estado.cursos = dados.cursos.filter((curso) => curso.disponivel !== false);
     estado.areas = [AREA_TODOS, ...dados.areas];
   } catch (erro) {
     console.error("Não foi possível carregar o catálogo offline:", erro);
@@ -144,12 +144,25 @@ function criarCardCurso(curso) {
         ${iconeSeta()}
       </div>
     </button>`;
+
+  // Botão de áudio: fica fora do botão principal (não dá pra ter
+  // botão dentro de botão em HTML válido), flutuando sobre o card.
+  const botaoAudio = document.createElement("button");
+  botaoAudio.type = "button";
+  botaoAudio.className = "course-audio-toggle";
+  botaoAudio.setAttribute("aria-label", `Ouvir descrição do curso ${curso.titulo}`);
+  botaoAudio.setAttribute(
+    "data-ouvir-texto",
+    `${curso.titulo}. ${curso.nivel}, modalidade ${curso.modalidade}. ${curso.descricao}`
+  );
+  botaoAudio.innerHTML = iconeAltoFalante();
+  artigo.appendChild(botaoAudio);
+
   artigo.querySelector(".course-card-open").addEventListener("click", () => {
-  window.location.href = `curso-detalhes.html?id=${curso.id}`;
+    window.location.href = `curso-detalhes.html?id=${curso.id}`;
   });
   return artigo;
 }
-
 function renderizarCursos() {
   const grade = document.getElementById("grade-cursos");
   const vazio = document.getElementById("catalogo-vazio");
@@ -190,6 +203,9 @@ function iconePessoas() {
 function iconeSeta() {
   return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
 }
+function iconeAltoFalante() {
+  return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>';
+}
 
 /* ---------------------- Mascote Stênio ---------------------- */
 
@@ -211,6 +227,7 @@ function falarComoMascote(mensagem, humor = "welcome") {
   imagem.src = POSES_MASCOTE[humor] || POSES_MASCOTE.welcome;
   guia.className = `mascot-guide mascot-mood-${humor}`;
   caixa.hidden = false;
+  document.getElementById("botao-audio-mascote").setAttribute("data-ouvir-texto", mensagem);
 }
 
 function iniciarMascote() {
@@ -221,6 +238,28 @@ function iniciarMascote() {
     const caixa = document.getElementById("mensagem-mascote-caixa");
     caixa.hidden = !caixa.hidden;
   });
+}
+
+/* ---------------------- Expressões automáticas do mascote ---------------------- */
+
+const SEQUENCIA_EXPRESSOES = ["welcome", "pointing", "thinking", "thinkingHappy", "neutral"];
+let indiceExpressaoAtual = 0;
+
+function alternarExpressaoMascoteAutomaticamente() {
+  const caixa = document.getElementById("mensagem-mascote-caixa");
+  if (caixa && !caixa.hidden) return; // não troca enquanto o usuário está lendo uma mensagem
+
+  indiceExpressaoAtual = (indiceExpressaoAtual + 1) % SEQUENCIA_EXPRESSOES.length;
+  const humor = SEQUENCIA_EXPRESSOES[indiceExpressaoAtual];
+
+  const imagem = document.getElementById("imagem-mascote");
+  const guia = document.getElementById("guia-mascote");
+  imagem.src = POSES_MASCOTE[humor];
+  guia.className = `mascot-guide mascot-mood-${humor}`;
+}
+
+function iniciarExpressoesAutomaticas() {
+  setInterval(alternarExpressaoMascoteAutomaticamente, 9000);
 }
 
 /* ---------------------- Ações guiadas pelo mascote ---------------------- */
@@ -418,8 +457,13 @@ function iniciarVLibras() {
 document.addEventListener("DOMContentLoaded", async () => {
   document.title = "Inicial | SENAI Stênio Lopes";
   iniciarCabecalho();
+  iniciarModoDaltonico();
+  iniciarBotoesDeAudio();
+  iniciarAudioHero();
   ocultarAdminForaDoAmbienteLocal();
+  iniciarCarrosselHero();
   iniciarMascote();
+  iniciarExpressoesAutomaticas();
   iniciarBoasVindas();
   iniciarBusca();
   iniciarBotaoTopo();
@@ -440,6 +484,54 @@ document.addEventListener("DOMContentLoaded", async () => {
     navigator.serviceWorker.register("service_woker.js").catch((erro) => console.warn("Service worker não registrado:", erro));
   }
 });
+
+/* ---------------------- Áudio do hero ---------------------- */
+
+function iniciarAudioHero() {
+  const botao = document.getElementById("botao-audio-hero");
+  if (!botao) return;
+  botao.addEventListener("click", () => {
+    if (botao.classList.contains("is-falando")) {
+      pararFala();
+      return;
+    }
+    const eyebrow = document.getElementById("texto-hero-eyebrow")?.textContent || "";
+    const titulo = document.getElementById("texto-hero-titulo")?.textContent || "";
+    const descricao = document.getElementById("texto-hero-descricao")?.textContent || "";
+    falarTexto(`${eyebrow}. ${titulo}. ${descricao}`, botao);
+  });
+}
+
+/* ---------------------- Carrossel de fotos do hero ---------------------- */
+
+const FOTOS_HERO = [
+  "imagens/campus/campus-fachada.jpg",
+  "imagens/campus/campus-recepcao.jpg",
+  "imagens/campus/campus-lazer.jpg",
+  "imagens/campus/campus-vista-geral.jpg",
+  "imagens/campus/campus-rosielio-fachada.jpg",
+];
+
+function iniciarCarrosselHero() {
+  const container = document.getElementById("carrossel-hero");
+  if (!container) return;
+
+  FOTOS_HERO.forEach((src, indice) => {
+    const img = document.createElement("img");
+    img.className = "hero-carousel-slide" + (indice === 0 ? " is-active" : "");
+    img.src = src;
+    img.alt = "";
+    container.appendChild(img);
+  });
+
+  const slides = container.querySelectorAll(".hero-carousel-slide");
+  let atual = 0;
+  setInterval(() => {
+    slides[atual].classList.remove("is-active");
+    atual = (atual + 1) % slides.length;
+    slides[atual].classList.add("is-active");
+  }, 6000);
+}
 
 /* ---------------------- Visibilidade da área admin ---------------------- */
 

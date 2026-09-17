@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curso | SENAI Stênio Lopes</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="imagens/logos/favicon.png" />
+  <meta name="theme-color" content="#063a68" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/estilo.css" />
+  <style>
+    /* Ambiente próprio da página de curso completo: mais espaço de leitura,
+       reaproveitando os tokens visuais (--ink, --paper, --coral, etc). */
+    .pagina-curso-completo { padding: 40px 0 100px; background: var(--paper); }
+    .curso-completo-voltar { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 22px; padding: 12px 18px; border-radius: 999px; background: var(--ink); color: var(--white); font-size: 0.88rem; font-weight: 700; box-shadow: var(--shadow-soft); }
+    .curso-completo-voltar:hover { background: var(--coral); }
+    .curso-completo-hero { display: grid; grid-template-columns: 1fr; gap: 0; overflow: hidden; border-radius: 16px; background: var(--white); box-shadow: var(--shadow); }
+    .curso-completo-foto { position: relative; aspect-ratio: 2.4; overflow: hidden; background: var(--ink); }
+    .curso-completo-foto img { width: 100%; height: 100%; object-fit: cover; }
+    .curso-completo-foto::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(6, 43, 82, 0.55)); }
+    .curso-completo-titulo-sobreposto { position: absolute; z-index: 1; left: 28px; right: 28px; bottom: 22px; color: var(--white); }
+    .curso-completo-titulo-sobreposto span { display: inline-block; margin-bottom: 8px; padding: 5px 10px; border-radius: 999px; background: rgba(255,255,255,0.16); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+    .curso-completo-titulo-sobreposto h1 { margin: 0; font-family: "Barlow Condensed", sans-serif; font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 800; line-height: 1; }
+    .curso-completo-corpo { padding: 34px clamp(20px, 4vw, 44px) 40px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 34px; }
+    .curso-completo-texto h2 { margin: 0 0 12px; font-family: "Barlow Condensed", sans-serif; font-size: 1.7rem; }
+    .curso-completo-texto p { color: var(--muted); line-height: 1.7; margin: 0 0 18px; }
+    .curso-completo-info { display: grid; gap: 14px; align-content: start; }
+    .curso-completo-info-card { padding: 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
+    .curso-completo-info-card span { display: block; margin-bottom: 6px; color: var(--coral); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+    .curso-completo-info-card p { margin: 0; color: var(--ink); font-size: 0.94rem; line-height: 1.5; }
+    .curso-completo-areas { display: flex; flex-wrap: wrap; gap: 7px; }
+    .curso-completo-areas span.tag { display: inline-block; padding: 6px 10px; border-radius: 999px; background: var(--sky-soft); color: var(--ink-soft); font-size: 0.76rem; font-weight: 700; text-transform: none; letter-spacing: normal; }
+    .curso-completo-video-section { padding: 0 clamp(20px, 4vw, 44px) 40px; }
+    .curso-completo-video-section h2 { font-family: "Barlow Condensed", sans-serif; font-size: 1.5rem; margin: 0 0 14px; }
+    .curso-completo-video-wrap { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; background: #000; }
+    .curso-completo-video-wrap video { width: 100%; height: 100%; object-fit: cover; }
+    .curso-completo-video-vazio { display: grid; place-items: center; height: 100%; color: #cfd8e0; font-size: 0.85rem; text-align: center; padding: 20px; }
+    @media (max-width: 820px) {
+      .curso-completo-corpo { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-page">
+    <header class="site-header">
+      <div class="site-shell header-inner">
+        <a href="index.html" class="brand-link" aria-label="SENAI Stênio Lopes — página Inicial">
+          <img class="brand-logo" src="imagens/logos/logo-senai.png" alt="SENAI Stênio Lopes" />
+        </a>
+        <nav class="desktop-nav" aria-label="Navegação principal">
+          <a href="index.html" class="nav-link">Inicial</a>
+          <a href="index.html#cursos" class="nav-link">Cursos</a>
+          <a href="sobre.html" class="nav-link">Sobre</a>
+        </nav>
+        <button class="theme-toggle" type="button" id="botao-tema" data-alterna-tema aria-label="Alternar tema claro/escuro">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+          <span>Escuro</span>
+        </button>
+        <button class="colorblind-toggle" type="button" data-alterna-daltonico aria-pressed="false" aria-label="Alternar modo para daltônicos">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="4" /></svg>
+          <span>Daltônico</span>
+        </button>
+        <a class="header-contact" href="mailto:contato@senai.br">Fale conosco</a>
+      </div>
+    </header>
+
+    <main class="pagina-curso-completo">
+      <div class="site-shell">
+        <a href="index.html" class="curso-completo-voltar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
+          Voltar para a página principal
+        </a>
+
+        <div class="curso-completo-hero">
+          <div class="curso-completo-foto">
+            <img id="curso-completo-imagem" src="" alt="" />
+            <div class="curso-completo-titulo-sobreposto">
+              <span id="curso-completo-area"></span>
+              <h1 id="curso-completo-titulo"></h1>
+            </div>
+          </div>
+
+          <div class="curso-completo-corpo">
+            <div class="curso-completo-texto">
+              <h2>Sobre o curso</h2>
+              <p id="curso-completo-texto-detalhado"></p>
+              <button type="button" id="botao-audio-curso-completo" class="secondary-action audio-toggle-inline" style="margin: 4px 0 18px;" aria-label="Ouvir tudo sobre o curso">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                <span>Ouvir tudo sobre o curso</span>
+              </button>
+
+              <h2>Possibilidades de carreira</h2>
+              <div class="curso-completo-areas" id="curso-completo-carreiras"></div>
+
+              <h2 style="margin-top:22px;">Perfil profissional</h2>
+              <p id="curso-completo-perfil"></p>
+            </div>
+            <div class="curso-completo-info">
+              <div class="curso-completo-info-card">
+                <span>Faixa salarial estimada</span>
+                <p id="curso-completo-salario"></p>
+              </div>
+              <div class="curso-completo-info-card">
+                <span>Áreas e setores de atuação</span>
+                <div class="curso-completo-areas" id="curso-completo-areas"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section class="curso-completo-video-section">
+          <h2>Conheça a estrutura e as aulas</h2>
+          <div class="curso-completo-video-wrap" id="curso-completo-video-wrap">
+            <div class="curso-completo-video-vazio">Vídeo deste curso ainda não disponível.</div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-shell footer-grid">
+        <div class="footer-brand">
+          <img src="imagens/logos/logo-senai-completa.png" alt="SENAI Stênio Lopes" />
+          <p>Formação profissional, tecnologia e oportunidades para transformar trajetórias.</p>
+        </div>
+        <div class="footer-group">
+          <span class="footer-eyebrow">Navegação</span>
+          <a href="index.html">Inicial</a>
+          <a href="sobre.html">Sobre</a>
+          <a href="index.html#cursos">Cursos</a>
+        </div>
+        <div class="footer-group">
+          <span class="footer-eyebrow">Contato</span>
+          <a href="mailto:contato@senai.br">contato@senai.br</a>
+          <a href="tel:+5583993692035">(83) 9 9369-2035</a>
+          <span>Campina Grande — PB</span>
+        </div>
+      </div>
+      <div class="site-shell footer-bottom">
+        <span>© 2026 SENAI Stênio Lopes</span>
+        <span>Plataforma informativa de cursos da unidade.</span>
+      </div>
+    </footer>
+
+    <!-- ===================== GUIA (MASCOTE) ===================== -->
+    <aside class="mascot-guide mascot-mood-thinkingHappy" id="guia-mascote" aria-live="polite">
+      <div class="mascot-message mascot-message-animated" id="mensagem-mascote-caixa">
+        <button type="button" id="botao-audio-mascote" class="mascot-audio-toggle" aria-label="Ouvir mensagem do Stênio">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        </button>
+        <button class="mascot-close" type="button" id="botao-fechar-mascote" aria-label="Fechar mensagem do Stênio">
+      </div>
+      <button class="mascot-button" type="button" id="botao-mascote" aria-label="Abrir guia do Stênio">
+        <img class="mascot-avatar-image" id="imagem-mascote" src="imagens/mascote/stenio-pensando-feliz.png" alt="" />
+        <span class="mascot-status">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>
+        </span>
+      </button>
+    </aside>
+
+    <div id="vlibras-root" aria-label="Recursos de acessibilidade em Libras"></div>
+  </div>
+  <script src="js/acessibilidade.js"></script>
+  <script src="js/curso-completo.js"></script>
+</body>
+</html>

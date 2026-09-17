@@ -40,6 +40,9 @@ function renderizarCampus() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  iniciarTema();
+  iniciarModoDaltonico();
+  iniciarBotoesDeAudio();
   document.getElementById("botao-campus-anterior").addEventListener("click", () => {
     slideAtivo = (slideAtivo - 1 + SLIDES_CAMPUS.length) % SLIDES_CAMPUS.length;
     renderizarCampus();

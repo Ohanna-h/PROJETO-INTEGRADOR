@@ -112,9 +112,37 @@ function iniciarAbas() {
   });
 }
 
-/* ---------------------- Cursos: listar / criar / editar / remover ---------------------- */
+/* ---------------------- Barra de status da última atualização ---------------------- */
+
+// Formata a data mais recente entre os cursos carregados. A coluna
+// atualizado_em é mantida automaticamente pelo MySQL (ON UPDATE
+// CURRENT_TIMESTAMP), então não precisamos calcular nada no backend —
+// só pegar o valor mais recente entre os cursos já retornados.
+function atualizarBarraStatus(cursos, dataManualDeFallback) {
+  const el = document.getElementById("barra-status-cursos");
+  if (!el) return;
+
+  const datas = cursos
+    .map((curso) => curso.atualizadoEm && new Date(curso.atualizadoEm))
+    .filter(Boolean);
+  if (dataManualDeFallback) datas.push(dataManualDeFallback);
+
+  if (datas.length === 0) {
+    el.textContent = "Nenhuma atualização registrada ainda.";
+    return;
+  }
+
+  const maisRecente = new Date(Math.max(...datas.map((d) => d.getTime())));
+  const formatada = maisRecente.toLocaleString("pt-BR", {
+    day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit",
+  });
+  el.textContent = `Última atualização no catálogo: ${formatada}`;
+}
+
+/* ---------------------- Cursos: listar / criar / editar / remover / disponibilidade ---------------------- */
 
 let cursoEmEdicaoId = null;
+let ultimosCursosCarregados = [];
 
 function mostrarFeedbackCurso(mensagem, tipo) {
   const el = document.getElementById("curso-feedback");
@@ -136,30 +164,52 @@ function preencherFormularioCurso(curso) {
   document.getElementById("curso-form-imagem").value = curso.imagemUrl;
   document.getElementById("curso-form-descricao").value = curso.descricao;
   document.getElementById("curso-form-dica").value = curso.dicaMascote;
+  document.getElementById("curso-form-disponivel").checked = curso.disponivel !== false;
 }
 
 function limparFormularioCurso() {
   document.getElementById("formulario-curso").reset();
   document.getElementById("curso-id").value = "";
+  document.getElementById("curso-form-disponivel").checked = true;
   cursoEmEdicaoId = null;
   document.getElementById("botao-cancelar-edicao").hidden = true;
   document.getElementById("botao-salvar-curso").innerHTML =
     '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Adicionar curso';
 }
 
+async function alternarDisponibilidadeCurso(curso) {
+  await requisicaoAutenticada(`/api/cursos/${curso.id}/disponibilidade`, {
+    method: "PATCH",
+    body: JSON.stringify({ disponivel: !curso.disponivel }),
+  });
+  carregarCursos();
+}
+
 function renderizarListaCursos(cursos) {
-  document.getElementById("contador-cursos-admin").textContent = cursos.length;
+  document.getElementById("contador-cursos-admin").textContent =
+    cursos.filter((c) => c.disponivel).length;
   document.getElementById("contador-lista-cursos").textContent = `${cursos.length} itens`;
 
   const lista = document.getElementById("lista-cursos");
   lista.innerHTML = "";
   for (const curso of cursos) {
     const item = document.createElement("article");
-    item.className = "admin-course-row";
+    item.className = "admin-course-row" + (curso.disponivel ? "" : " admin-course-row-indisponivel");
     item.innerHTML = `
       <img src="${curso.imagemUrl}" alt="" />
-      <div><strong>${curso.titulo}</strong><span>${curso.area} · ${curso.nivel} · ${curso.modalidade}</span></div>
+      <div>
+        <strong>${curso.titulo}</strong>
+        <span>${curso.area} · ${curso.nivel} · ${curso.modalidade}</span>
+        <span class="admin-course-badge ${curso.disponivel ? "is-disponivel" : "is-indisponivel"}">
+          ${curso.disponivel ? "Disponível" : "Indisponível"}
+        </span>
+      </div>
       <div class="admin-row-actions">
+        <button type="button" data-acao="disponibilidade" aria-label="${curso.disponivel ? "Marcar como indisponível" : "Marcar como disponível"}">
+          ${curso.disponivel
+            ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>'
+            : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a18.5 18.5 0 0 1 5.06-5.94M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" /><line x1="1" y1="1" x2="23" y2="23" /></svg>'}
+        </button>
         <button type="button" data-acao="editar" aria-label="Editar ${curso.titulo}">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4z" /></svg>
         </button>
@@ -167,6 +217,9 @@ function renderizarListaCursos(cursos) {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="3 6 5 6 21 6" /><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" /></svg>
         </button>
       </div>`;
+    item.querySelector('[data-acao="disponibilidade"]').addEventListener("click", () => {
+      alternarDisponibilidadeCurso(curso);
+    });
     item.querySelector('[data-acao="editar"]').addEventListener("click", () => {
       preencherFormularioCurso(curso);
       cursoEmEdicaoId = curso.id;
@@ -178,16 +231,18 @@ function renderizarListaCursos(cursos) {
     item.querySelector('[data-acao="remover"]').addEventListener("click", async () => {
       if (!window.confirm(`Remover ${curso.titulo}?`)) return;
       await requisicaoAutenticada(`/api/cursos/${curso.id}`, { method: "DELETE" });
-      carregarCursos();
+      carregarCursos(new Date());
     });
     lista.appendChild(item);
   }
 }
 
-async function carregarCursos() {
-  const resposta = await requisicaoAutenticada("/api/cursos");
+async function carregarCursos(dataManualDeFallback) {
+  const resposta = await requisicaoAutenticada("/api/cursos/admin");
   const cursos = await resposta.json();
+  ultimosCursosCarregados = cursos;
   renderizarListaCursos(cursos);
+  atualizarBarraStatus(cursos, dataManualDeFallback);
 }
 
 function iniciarFormularioCurso() {
@@ -207,6 +262,7 @@ function iniciarFormularioCurso() {
       imagemUrl: document.getElementById("curso-form-imagem").value.trim(),
       descricao: document.getElementById("curso-form-descricao").value.trim(),
       dicaMascote: document.getElementById("curso-form-dica").value.trim(),
+      disponivel: document.getElementById("curso-form-disponivel").checked,
     };
 
     try {

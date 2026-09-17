@@ -36,12 +36,16 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
             <span>Área admin</span>
           </a>
-          <button class="theme-toggle" type="button" id="botao-tema" aria-label="Alternar tema claro/escuro">
+          <button class="theme-toggle" type="button" id="botao-tema" data-alterna-tema aria-label="Alternar tema claro/escuro">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
             <span>Escuro</span>
           </button>
-          <a class="header-contact" href="mailto:contato@senai.br">Fale conosco</a>
-        </div>
+          <button class="colorblind-toggle" type="button" data-alterna-daltonico aria-pressed="false" aria-label="Alternar modo para daltônicos">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="4" /></svg>
+          <span>Modo para Daltônicos</span>
+          </button>
+            <a class="header-contact" href="mailto:contato@senai.br">Fale conosco</a>
+          </div>
 
         <button class="mobile-menu-toggle" type="button" id="botao-menu-mobile" aria-expanded="false" aria-controls="mobile-navigation">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7" /><line x1="4" y1="12" x2="20" y2="12" /><line x1="4" y1="17" x2="20" y2="17" /></svg>
@@ -55,7 +59,8 @@
           <a href="#cursos" class="nav-link">Cursos</a>
           <a  href="sobre.html" class="nav-link">Sobre</a>
           <a href="/administrador/admin.html" class="mobile-admin">Área administrativa</a>
-          <button class="mobile-theme-toggle" type="button" id="botao-tema-mobile">Usar modo escuro</button>
+          <button class="mobile-theme-toggle" type="button" id="botao-tema-mobile" data-alterna-tema>Usar modo escuro</button>
+          <button class="mobile-theme-toggle" type="button" data-alterna-daltonico aria-pressed="false">Ativar modo daltônico</button>
           <a class="mobile-contact" href="mailto:contato@senai.br">Fale conosco</a>
         </div>
       </div>
@@ -65,6 +70,7 @@
       <!-- ===================== HERO ===================== -->
       <section class="hero-section" id="inicial" style="--hero-photo: url(imagens/campus/campus-fachada.jpg)">
         <div class="hero-grid-pattern" aria-hidden="true"></div>
+        <div class="hero-carousel" id="carrossel-hero" aria-hidden="true"></div>
         <div class="site-shell hero-grid hero-grid-solo">
           <div class="hero-copy">
             <span class="hero-badge" id="texto-hero-eyebrow">SENAI Stênio Lopes · Campina Grande</span>
@@ -74,8 +80,12 @@
               <a class="primary-action" href="#cursos">Explorar cursos
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
               </a>
-              <a class="secondary-action"  href="sobre.html">Conhecer a unidade</a>
-            </div>
+              <a class="secondary-action" href="sobre.html">Conhecer a unidade</a>
+              <button type="button" id="botao-audio-hero" class="secondary-action audio-toggle-inline" aria-label="Ouvir texto de boas-vindas">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                <span>Ouvir</span>
+              </button>
+              </div>
             <div class="hero-evidence">
               <div><strong id="numero-cursos-destaque">10</strong><span>formações em destaque</span></div>
               <div><strong>5</strong><span>áreas para explorar</span></div>
@@ -174,18 +184,16 @@
     <!-- ===================== GUIA (MASCOTE) ===================== -->
     <aside class="mascot-guide mascot-mood-welcome" id="guia-mascote" aria-live="polite">
       <div class="mascot-message mascot-message-animated" id="mensagem-mascote-caixa">
-        <button class="mascot-close" type="button" id="botao-fechar-mascote" aria-label="Fechar mensagem do Stênio">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+        <button type="button" id="botao-audio-mascote" class="mascot-audio-toggle" aria-label="Ouvir mensagem do Stênio">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
         </button>
-        <span class="mascot-label">Stênio explica</span>
-        <p id="mensagem-mascote-texto">Olá! Eu sou Stênio. Use os filtros para encontrar uma formação que combine com seus próximos passos.</p>
-      </div>
-      <button class="mascot-button" type="button" id="botao-mascote" aria-label="Abrir guia do Stênio">
+        <button class="mascot-close" type="button" id="botao-fechar-mascote" aria-label="Fechar mensagem do Stênio">
+        <button class="mascot-button" type="button" id="botao-mascote" aria-label="Abrir guia do Stênio">
         <img class="mascot-avatar-image" id="imagem-mascote" src="imagens/mascote/stenio-joinha.png" alt="" />
         <span class="mascot-status">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>
         </span>
-      </button>
+        </button>
     </aside>
 
     <!-- ===================== BOAS-VINDAS DA RECEPÇÃO ===================== -->
@@ -250,7 +258,7 @@
       <span>Topo</span>
     </button>
   </div>
-
+  <script src="js/acessibilidade.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>

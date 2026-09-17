@@ -33,12 +33,18 @@ function preencherPagina(curso) {
   document.getElementById("curso-turno").textContent = curso.turno;
   document.getElementById("curso-vagas").textContent = curso.vagas;
   document.getElementById("curso-dica-mascote").textContent = curso.dicaMascote;
-  document.getElementById("curso-link-contato").href =
-    `mailto:contato@senai.br?subject=${encodeURIComponent(`Informações sobre ${curso.titulo}`)}`;
+  document.getElementById("curso-link-completo").href = `curso-completo.html?id=${curso.id}`;
   document.getElementById("curso-conteudo").hidden = false;
+  document.getElementById("botao-audio-curso").setAttribute(
+    "data-ouvir-texto",
+    `${curso.titulo}. Curso de nível ${curso.nivel}, modalidade ${curso.modalidade}, carga horária de ${curso.cargaHoraria}, no turno ${curso.turno}, com ${curso.vagas}. ${curso.descricao}. Dica do Stênio: ${curso.dicaMascote}`
+  );
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  iniciarTema();
+  iniciarModoDaltonico();
+  iniciarBotoesDeAudio();
   const id = obterIdDaUrl();
   const curso = id ? await buscarCurso(id) : null;
 

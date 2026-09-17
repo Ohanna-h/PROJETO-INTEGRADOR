@@ -19,6 +19,14 @@
     {
       "nome": "Automação",
       "icone_url":"imagens/icones/icone-automacao.png"
+    },
+    {
+      "nome": "Vestuário e Couro",
+      "icone_url": "imagens/icones/vestuario.png"
+    },
+    {
+      "nome": "Alimentos",
+      "icone_url": "imagens/icones/alimentos.png"
     }
   ],
   "cursos": [
@@ -34,7 +42,26 @@
       "descricao": "Formação técnica completa em sistemas eletroeletrônicos, automação e instalações elétricas.",
       "dicaMascote": "Eletroeletrônica conecta você aos principais setores da indústria.",
       "destaque": "Alta demanda",
-      "imagemUrl":"imagens/cursos/curso-tecnico-eletroeletronica.jpg"
+      "imagemUrl":"imagens/cursos/curso-tecnico-eletroeletronica.jpg",
+      "textoCompleto": "O curso de Eletroeletrônica prepara o estudante para planejar, instalar, testar, inspecionar e realizar a manutenção de equipamentos e instalações eletroeletrônicas industriais. A formação abrange acionamentos, controles eletroeletrônicos, sistemas automáticos, medições, calibrações, eficiência energética, fontes de energia alternativas e tecnologias digitais aplicadas à indústria.",
+      "faixaSalarial": "R$ 1.812 a R$ 5.282 por mês (média R$ 3.094) — fonte: Indeed, 15/08/2026",
+      "perfilProfissional": "Formação indicada para quem gosta de eletricidade, eletrônica, montagem, manutenção e investigação de falhas. Exige atenção a detalhes, disciplina com normas de segurança, capacidade de interpretar diagramas e instrumentos de medição, raciocínio lógico e habilidade manual.",
+      "carreiras": [
+        "Eletricista Industrial",
+        "Instalador de Sistemas Eletroeletrônicos Industriais",
+        "Mantenedor de Sistemas Eletroeletrônicos Industriais",
+        "Projetista de Instalações Elétricas Prediais ou Industriais",
+        "Montador de Equipamentos Eletroeletrônicos",
+        "Instalador de Sistemas Fotovoltaicos"
+],
+      "areasAtuacao": [
+        "Instalação e manutenção de equipamentos eletroeletrônicos",
+        "Fabricantes de máquinas e componentes",
+        "Laboratórios de controle de qualidade e calibração",
+        "Assistência técnica",
+        "Integração de sistemas",
+        "Energia solar e automação predial/residencial"
+]
     },
     {
       "id": 2,
@@ -160,7 +187,23 @@
       "descricao": "Formação técnica em automação, CLP, robótica e sistemas industriais inteligentes.",
       "dicaMascote": "Automação é uma das chaves para transformar dados, máquinas e processos.",
       "destaque": "Alta demanda",
-      "imagemUrl":"imagens/cursos/curso-tecnico-automacao.jpg"
+      "imagemUrl":"imagens/cursos/curso-tecnico-automacao.jpg",
+      "textoCompleto": "O curso de Automação Industrial prepara o estudante para desenvolver, instalar, configurar, testar, calibrar e manter sistemas automatizados utilizados no controle de processos industriais. A formação integra eletricidade, eletrônica, instrumentação, programação, redes industriais, sistemas supervisórios, robótica, sistemas ciberfísicos e Internet das Coisas (IoT).",
+      "faixaSalarial": "R$ 2.140 a R$ 7.012 por mês (média R$ 3.874) — fonte: Indeed, 16/08/2026",
+      "perfilProfissional": "Indicado para quem tem interesse por tecnologia, lógica, programação, máquinas e resolução de problemas, combinando raciocínio analítico com capacidade prática de medir, testar, calibrar e interpretar falhas.",
+      "carreiras": [
+        "Instrumentista Industrial",
+        "Montador de Equipamentos Eletroeletrônicos",
+        "Operador em Linha de Montagem de Equipamentos Eletroeletrônicos",
+        "Reparador de Circuitos Eletrônicos"
+],
+      "areasAtuacao": [
+        "Linhas de produção automatizadas",
+        "Manutenção industrial",
+        "Integradoras de sistemas de automação",
+        "Fabricantes de máquinas e equipamentos robotizados",
+        "Setores químico, petroquímico, automobilístico e metal mecânico"
+]
     },
     {
       "id": 11,
@@ -188,7 +231,23 @@
       "descricao": "Instalação, manutenção e reparo de sistemas de refrigeração e ar-condicionado.",
       "dicaMascote": "Climatização reúne técnica, conforto e uma ampla atuação profissional.",
       "destaque": "Em destaque",
-      "imagemUrl":"imagens/cursos/curso-tecnico-refrigeracao.jpg"
+      "imagemUrl":"imagens/cursos/curso-tecnico-refrigeracao.jpg",
+      "textoCompleto": "O curso de Refrigeração e Climatização prepara o estudante para planejar, instalar, testar, manter e reparar equipamentos e sistemas de refrigeração e climatização em ambientes residenciais, comerciais e industriais, aplicando normas técnicas e ambientais e buscando eficiência energética.",
+      "faixaSalarial": "R$ 1.621 a R$ 5.419 por mês (média R$ 2.813) — fonte: Indeed, 16/08/2026",
+      "perfilProfissional": "Indicado para quem gosta de atividades práticas, diagnóstico de falhas e resolução de problemas, com atenção à segurança, eletricidade, termodinâmica e manuseio responsável de gases refrigerantes.",
+      "carreiras": [
+      "Instalador de Refrigeração e Climatização Doméstica",
+      "Mecânico de Refrigeração e Climatização Industrial",
+      "Mecânico em Refrigeração Comercial",
+      "Mecânico de Manutenção de Sistemas de Refrigeração e Climatização"
+  ],
+      "areasAtuacao": [
+        "Oficinas de refrigeração residencial",
+        "Empresas de comercialização, instalação e assistência técnica",
+        "Empresas de projetos e manutenção",
+        "Indústrias que utilizam sistemas de refrigeração",
+        "Construção civil, transporte frigorificado, indústria têxtil e farmacêutica"
+  ]
     },
     {
       "id": 13,
@@ -273,6 +332,202 @@
       "dicaMascote": "Uma formação completa para quem quer atuar com tecnologia e internet.",
       "destaque": "Alta demanda",
       "imagemUrl":"imagens/cursos/curso-tecnico-informatica-internet.jpg"
-    }
+    },
+    {
+      "id": 19,
+      "titulo": "NR 10 — Segurança em Instalações Elétricas (Renovação)",
+      "area": "Eletroeletrônica",
+      "nivel": "Aperfeiçoamento",
+      "modalidade": "Presencial",
+      "cargaHoraria": "20h",
+      "turno": "Flexível",
+      "vagas": "20 vagas",
+      "descricao": "Reciclagem da NR10 para manutenção da certificação em segurança elétrica.",
+      "dicaMascote": "Mantenha sua certificação de segurança elétrica sempre em dia.",
+      "destaque": null,
+      "imagemUrl": "imagens/cursos/curso-nr10-20h.png"
+   },
+   {
+      "id": 20,
+      "titulo": "Programador de Sistemas de Computador",
+      "area": "Tecnologia da Informação",
+      "nivel": "Qualificação",
+      "modalidade": "Presencial",
+      "cargaHoraria": "200h",
+      "turno": "Manhã",
+      "vagas": "A definir",
+      "descricao": "Desenvolvimento de programas e sistemas para computador, do básico à lógica aplicada.",
+      "dicaMascote": "A lógica de programação abre portas em praticamente qualquer área da tecnologia.",
+      "destaque": null,
+      "imagemUrl": "imagens/cursos/curso-placeholder.jpg"
+  },
+{
+  "id": 21,
+  "titulo": "Operador de Computador",
+  "area": "Tecnologia da Informação",
+  "nivel": "Qualificação",
+  "modalidade": "Presencial",
+  "cargaHoraria": "160h",
+  "turno": "Manhã ou noite",
+  "vagas": "A definir",
+  "descricao": "Uso de computadores, pacote office e ferramentas básicas de informática no dia a dia.",
+  "dicaMascote": "Domine as ferramentas de informática que o mercado pede todos os dias.",
+  "destaque": null,
+  "imagemUrl": "imagens/cursos/curso-placeholder.jpg"
+},
+{
+  "id": 22,
+  "titulo": "Mecânico de Instalações Industriais",
+  "area": "Metalmecânica",
+  "nivel": "Qualificação",
+  "modalidade": "Presencial",
+  "cargaHoraria": "220h",
+  "turno": "Tarde",
+  "vagas": "A definir",
+  "descricao": "Montagem, ajuste e manutenção de instalações e equipamentos industriais.",
+  "dicaMascote": "Instalações bem montadas são a base de qualquer linha de produção segura.",
+  "destaque": null,
+  "imagemUrl": "imagens/cursos/curso-placeholder.jpg"
+},
+{
+  "id": 23,
+  "titulo": "Instalador e Mantenedor de Sistemas Eletrônicos de Segurança",
+  "area": "Eletroeletrônica",
+  "nivel": "Qualificação",
+  "modalidade": "Presencial",
+  "cargaHoraria": "160h",
+  "turno": "Tarde",
+  "vagas": "A definir",
+  "descricao": "Instalação e manutenção de câmeras, alarmes e sistemas eletrônicos de segurança.",
+  "dicaMascote": "Segurança eletrônica é uma área que só cresce, dentro e fora da indústria.",
+  "destaque": null,
+  "imagemUrl": "imagens/cursos/curso-placeholder.jpg"
+},
+{
+  "id": 24,
+  "titulo": "Confeccionador de Artefatos de Couro",
+  "area": "Vestuário e Couro",
+  "nivel": "Qualificação",
+  "modalidade": "Presencial",
+  "cargaHoraria": "200h",
+  "turno": "Tarde ou noite",
+  "vagas": "A definir",
+  "descricao": "Confecção de bolsas, cintos e demais artefatos em couro com técnicas de acabamento.",
+  "dicaMascote": "Cada peça em couro carrega técnica, cuidado e um toque artesanal único.",
+  "destaque": null,
+  "imagemUrl": "imagens/cursos/curso-placeholder.jpg"
+},
+{
+  "id": 25,
+  "titulo": "Editor de Vídeos",
+  "area": "Tecnologia da Informação",
+  "nivel": "Qualificação",
+  "modalidade": "Presencial",
+  "cargaHoraria": "160h",
+  "turno": "Tarde",
+  "vagas": "A definir",
+  "descricao": "Edição e finalização de vídeos para redes sociais e produções audiovisuais.",
+  "dicaMascote": "Contar histórias em vídeo é uma habilidade cada vez mais valorizada.",
+  "destaque": null,
+  "imagemUrl": "imagens/cursos/curso-placeholder.jpg"
+},
+{
+  "id": 26,
+  "titulo": "Cerca Elétrica + Motor de Portão",
+  "area": "Eletroeletrônica",
+  "nivel": "Aperfeiçoamento",
+  "modalidade": "Presencial",
+  "cargaHoraria": "40h",
+  "turno": "Noite",
+  "vagas": "A definir",
+  "descricao": "Instalação e manutenção de cercas elétricas e motores de portão residenciais.",
+  "dicaMascote": "Um curso rápido, direto, e com aplicação imediata em residências.",
+  "destaque": null,
+  "imagemUrl": "imagens/cursos/curso-placeholder.jpg"
+},
+{
+  "id": 27,
+  "titulo": "Pão Francês e Correlatos",
+  "area": "Alimentos",
+  "nivel": "Qualificação",
+  "modalidade": "Presencial",
+  "cargaHoraria": "20h",
+  "turno": "Noite",
+  "vagas": "A definir",
+  "descricao": "Produção de pão francês e itens de panificação correlatos.",
+  "dicaMascote": "O cheirinho de pão quente sempre abre portas — literalmente.",
+  "destaque": null,
+  "imagemUrl": "imagens/cursos/curso-placeholder.jpg"
+},
+{
+  "id": 28,
+  "titulo": "Trilha de Mecânico de Climatização Residencial",
+  "area": "Refrigeração",
+  "nivel": "Aperfeiçoamento",
+  "modalidade": "Presencial",
+  "cargaHoraria": "240h",
+  "turno": "Noite",
+  "vagas": "A definir",
+  "descricao": "Trilha que reúne Técnicas de Refrigeração Residencial (80h) e Mecânico de Climatização Residencial (160h).",
+  "dicaMascote": "Uma trilha completa: do básico da refrigeração até a climatização residencial.",
+  "destaque": null,
+  "imagemUrl": "imagens/cursos/curso-placeholder.jpg"
+},
+{
+  "id": 29,
+  "titulo": "Designer Gráfico Editorial",
+  "area": "Tecnologia da Informação",
+  "nivel": "Qualificação",
+  "modalidade": "Presencial",
+  "cargaHoraria": "160h",
+  "turno": "Noite",
+  "vagas": "A definir",
+  "descricao": "Criação de peças gráficas e projetos editoriais com ferramentas de design.",
+  "dicaMascote": "Transforme ideias em peças gráficas que realmente comunicam.",
+  "destaque": null,
+  "imagemUrl": "imagens/cursos/curso-placeholder.jpg"
+},
+{
+  "id": 30,
+  "titulo": "Bolos Artísticos",
+  "area": "Alimentos",
+  "nivel": "Qualificação",
+  "modalidade": "Presencial",
+  "cargaHoraria": "40h",
+  "turno": "Noite",
+  "vagas": "A definir",
+  "descricao": "Técnicas de decoração e confecção de bolos artísticos.",
+  "dicaMascote": "Doçura e técnica se encontram na decoração de bolos artísticos.",
+  "destaque": null,
+  "imagemUrl": "imagens/cursos/curso-placeholder.jpg"
+},
+{
+  "id": 31,
+  "titulo": "Modelista do Vestuário",
+  "area": "Vestuário e Couro",
+  "nivel": "Qualificação",
+  "modalidade": "Presencial",
+  "cargaHoraria": "180h",
+  "turno": "Noite",
+  "vagas": "A definir",
+  "descricao": "Criação e modelagem de peças do vestuário, do risco ao molde final.",
+  "dicaMascote": "Do risco ao molde final: aprenda a dar forma a uma peça de roupa.",
+  "destaque": null,
+  "imagemUrl": "imagens/cursos/curso-placeholder.jpg"
+},
+{
+  "id": 32,
+  "titulo": "Confeiteiro",
+  "area": "Alimentos",
+  "nivel": "Qualificação",
+  "modalidade": "Presencial",
+  "cargaHoraria": "160h",
+  "turno": "Noite",
+  "vagas": "A definir",
+  "descricao": "Técnicas de confeitaria para doces, sobremesas e finalizações.",
+  "dicaMascote": "Técnicas de confeitaria pra transformar ingredientes em experiências.",
+  "destaque": null,
+  "imagemUrl": "imagens/cursos/curso-confeiteiro.jpg"
+}
   ]
 }

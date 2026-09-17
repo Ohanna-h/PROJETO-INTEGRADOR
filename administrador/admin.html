@@ -10,6 +10,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/estilo.css" />
   <link rel="stylesheet" href="admin_style.css" />
+  <style>
+    .admin-course-status-bar { margin-top: 8px; padding: 8px 12px; border-radius: 8px; background: var(--sky-soft); color: var(--ink-soft); font-size: 0.78rem; font-weight: 700; width: fit-content; }
+    .admin-course-badge { display: inline-block; margin-top: 3px; padding: 2px 8px; border-radius: 999px; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; }
+    .admin-course-badge.is-disponivel { background: rgba(16, 148, 100, 0.14); color: #0d7d54; }
+    .admin-course-badge.is-indisponivel { background: rgba(191, 67, 46, 0.14); color: #bf432e; }
+    .admin-course-row-indisponivel { opacity: 0.62; }
+    .admin-course-row-indisponivel img { filter: grayscale(0.5); }
+  </style>
 </head>
 <body>
 
@@ -102,11 +110,12 @@
         <!-- PAINEL: CURSOS -->
         <section class="admin-panel" id="painel-cursos">
           <div class="admin-panel-heading">
-            <div>
-              <span class="section-kicker">Catálogo</span>
-              <h2>Adicionar e editar cursos</h2>
-              <p>As alterações ficam disponíveis na página Inicial depois de salvas.</p>
-            </div>
+           <div>
+            <span class="section-kicker">Catálogo</span>
+            <h2>Adicionar e editar cursos</h2>
+            <p>As alterações ficam disponíveis na página Inicial depois de salvas.</p>
+            <p id="barra-status-cursos" class="admin-course-status-bar">Carregando última atualização...</p>
+          </div>
             <button class="admin-cancel-button" type="button" id="botao-cancelar-edicao" hidden>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
               Cancelar edição
@@ -119,6 +128,7 @@
             <label>Área<select required id="curso-form-area">
               <option>Eletroeletrônica</option><option>Metalmecânica</option>
               <option>Tecnologia da Informação</option><option>Refrigeração</option><option>Automação</option>
+              <option>Vestuário e Couro</option><option>Alimentos</option>
             </select></label>
             <label>Nível<select required id="curso-form-nivel">
               <option>Técnico</option><option>Qualificação</option><option>Aperfeiçoamento</option>
@@ -130,6 +140,10 @@
             <label>Turno<input required id="curso-form-turno" /></label>
             <label>Vagas<input required id="curso-form-vagas" /></label>
             <label>Destaque <span class="field-hint">opcional</span><input id="curso-form-destaque" placeholder="Ex.: Alta demanda" /></label>
+            <label style="display:flex; align-items:center; gap:8px; flex-direction:row;">
+              <input type="checkbox" id="curso-form-disponivel" checked style="width:auto; min-height:auto;" />
+              Disponível no catálogo público
+            </label>            
             <label class="wide-field">URL ou caminho da imagem<input required id="curso-form-imagem" placeholder="/imagens/cursos/nome-do-arquivo.jpg" /></label>
             <label class="wide-field">Descrição<textarea required minlength="10" id="curso-form-descricao" rows="3"></textarea></label>
             <label class="wide-field">Mensagem do Stênio<textarea required minlength="10" id="curso-form-dica" rows="2"></textarea></label>
