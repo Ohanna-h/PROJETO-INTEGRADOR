@@ -2,7 +2,10 @@ const CursoModel = require("../model/CursoModel");
 const AreaModel = require("../model/AreaModel");
 
 // Converte a linha do banco (snake_case, em português) para o
-// formato usado pelo frontend (camelCase).
+// formato usado pelo frontend (camelCase). possibilidades_carreira
+// e areas_atuacao chegam do banco como texto separado por vírgula
+// — o frontend (formatarParaArray, em curso-completo.js) já sabe
+// transformar isso numa lista de tags.
 function paraFrontend(curso) {
   return {
     id: curso.id,
@@ -14,6 +17,11 @@ function paraFrontend(curso) {
     turno: curso.turno,
     vagas: curso.vagas,
     descricao: curso.descricao,
+    textoCompleto: curso.texto_completo,
+    faixaSalarial: curso.faixa_salarial,
+    areasAtuacao: curso.areas_atuacao,
+    carreiras: curso.possibilidades_carreira,
+    perfilProfissional: curso.perfil_profissional,
     dicaMascote: curso.dica_mascote,
     destaque: curso.destaque,
     imagemUrl: curso.imagem_url,
@@ -39,6 +47,11 @@ async function prepararDados(body) {
     turno: String(body.turno || "").trim(),
     vagas: String(body.vagas || "").trim(),
     descricao: String(body.descricao || "").trim(),
+    textoCompleto: body.textoCompleto ? String(body.textoCompleto).trim() : null,
+    faixaSalarial: body.faixaSalarial ? String(body.faixaSalarial).trim() : null,
+    areasAtuacao: body.areasAtuacao ? String(body.areasAtuacao).trim() : null,
+    carreiras: body.carreiras ? String(body.carreiras).trim() : null,
+    perfilProfissional: body.perfilProfissional ? String(body.perfilProfissional).trim() : null,
     dicaMascote: String(body.dicaMascote || "").trim(),
     destaque: body.destaque ? String(body.destaque).trim() : null,
     imagemUrl: String(body.imagemUrl || "").trim(),
@@ -100,7 +113,6 @@ async function atualizar(req, res) {
 }
 
 // PATCH /api/cursos/:id/disponibilidade (protegida)
-// Alterna disponível/indisponível sem reenviar o formulário inteiro.
 async function alternarDisponibilidade(req, res) {
   try {
     const disponivel = Boolean(req.body.disponivel);
