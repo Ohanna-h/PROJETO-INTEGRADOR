@@ -1,18 +1,9 @@
 /* ============================================================
  * Plataforma SENAI Stênio Lopes — acessibilidade.js
- * Módulo compartilhado: tema claro/escuro e modo daltônico.
+ * Módulo compartilhado: tema claro/escuro, modo daltônico,
+ * descrição por áudio, e detecção da URL base da API.
  * Usado por todas as páginas (index, sobre, curso-detalhes,
  * curso-completo) para evitar duplicar essa lógica em cada uma.
- *
- * Como usar em uma página:
- *   1. Inclua este script ANTES do script próprio da página.
- *   2. No DOMContentLoaded da página, chame iniciarTema() e
- *      iniciarModoDaltonico().
- *   3. A página precisa ter, no mínimo, um botão com o atributo
- *      data-alterna-tema (para o modo escuro) e/ou
- *      data-alterna-daltonico (para o modo daltônico). Pode haver
- *      mais de um botão com o mesmo atributo (ex: versão desktop
- *      e versão mobile) — todos são sincronizados juntos.
  * ============================================================ */
 
 const CHAVE_TEMA = "theme";
@@ -84,6 +75,21 @@ function iniciarModoDaltonico() {
       aplicarModoDaltonico(!ativo);
     });
   });
+}
+
+/* ---------------------- URL base da API ---------------------- */
+/* Quando o site roda localmente pelo próprio Express (backend
+   servindo o frontend), a API já está no mesmo endereço, então
+   caminhos relativos como fetch("/api/cursos") funcionam sozinhos.
+   Quando o site roda no GitHub Pages (site estático, sem backend
+   junto), precisamos apontar explicitamente para o backend
+   hospedado no Render. */
+
+const API_BASE_RENDER = "https://projeto-senai-back-end.onrender.com";
+
+function obterBaseApi() {
+  const estaNoGithubPages = window.location.hostname.includes("github.io");
+  return estaNoGithubPages ? API_BASE_RENDER : "";
 }
 
 /* ---------------------- Descrição por áudio ---------------------- */

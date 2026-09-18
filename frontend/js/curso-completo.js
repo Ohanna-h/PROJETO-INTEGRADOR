@@ -11,7 +11,7 @@ function obterIdDaUrl() {
 
 async function buscarCurso(id) {
   try {
-    const resposta = await fetch("/api/cursos");
+    const resposta = await fetch(`${obterBaseApi()}/api/cursos`);
     if (!resposta.ok) throw new Error("Falha ao consultar a API");
     const cursos = await resposta.json();
     return cursos.find((curso) => String(curso.id) === String(id)) || null;

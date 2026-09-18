@@ -43,10 +43,11 @@ function filtrarCursos() {
 
 async function carregarDados() {
   try {
+    const baseApi = obterBaseApi();
     const [respCursos, respAreas, respConfig] = await Promise.all([
-      fetch("/api/cursos"),
-      fetch("/api/areas"),
-      fetch("/api/config"),
+      fetch(`${baseApi}/api/cursos`),
+      fetch(`${baseApi}/api/areas`),
+      fetch(`${baseApi}/api/config`),
     ]);
     if (!respCursos.ok || !respAreas.ok) throw new Error("Falha ao consultar a API");
 
