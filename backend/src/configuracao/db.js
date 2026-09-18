@@ -8,6 +8,12 @@ require("dotenv").config();
 // DB_SSL=true ativa a conexão criptografada exigida por bancos
 // gerenciados na nuvem (como o Aiven). Localmente, deixe DB_SSL
 // vazio ou "false" — o MySQL local não usa SSL.
+//
+// rejectUnauthorized: false mantém a conexão criptografada, só não
+// valida a autoridade certificadora do Aiven contra a lista de CAs
+// conhecidas do Node. É uma solução aceitável para apresentação/
+// desenvolvimento; para produção "de verdade" no futuro, o ideal é
+// configurar o certificado CA oficial do Aiven.
 const usarSSL = process.env.DB_SSL === "true";
 
 const pool = mysql.createPool({
@@ -21,7 +27,7 @@ const pool = mysql.createPool({
   queueLimit: 0,
   dateStrings: true,
   charset: "utf8mb4",
-  ssl: usarSSL ? { rejectUnauthorized: true } : undefined,
+  ssl: usarSSL ? { rejectUnauthorized: false } : undefined,
 });
 
 module.exports = pool;
