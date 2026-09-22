@@ -1,4 +1,3 @@
-
 :root {
   --ink: #062b52;
   --ink-soft: #173f66;
@@ -18,7 +17,7 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; min-width: 320px; background: var(--paper); color: var(--ink); font-family: "Barlow", Arial, sans-serif; }
+body { margin: 0; min-width: 320px; background: var(--paper); color: var(--ink); font-family: "Barlow", Arial, sans-serif; overflow-x: hidden; }
 button, input { font: inherit; }
 button { cursor: pointer; }
 a { color: inherit; text-decoration: none; }
@@ -463,6 +462,9 @@ body { background: var(--paper); transition: background 180ms var(--ease-out), c
 .back-to-top.is-visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
 .back-to-top:hover { background: var(--coral); }
 .back-to-top:active { transform: scale(0.97); }
+/* Tamanho "de referência" do mascote (desktop) — mobile é sobrescrito
+   mais abaixo, dentro dos media queries dedicados, pra não haver
+   disputa de cascata entre regras sem media query e regras com. */
 .mascot-button { width: 92px; height: 92px; overflow: visible; background: radial-gradient(circle at 50% 44%, #e9f9ff 0%, #b9e9f9 52%, #61bddb 100%); }
 .mascot-button::before { content: ""; position: absolute; inset: -7px; border: 1px dashed rgba(7, 103, 151, 0.48); border-radius: 50%; animation: mascot-orbit 9s linear infinite; }
 .mascot-button:hover { transform: translateY(-5px) rotate(-2deg); }
@@ -494,20 +496,22 @@ body { background: var(--paper); transition: background 180ms var(--ease-out), c
 @media (max-width: 1100px) {
   .desktop-nav { gap: 15px; }
   .header-actions { gap: 5px; }
-  .header-utility span, .theme-toggle span { display: none; }
+  .header-utility span, .theme-toggle span, .colorblind-toggle span { display: none; }
 }
 
 @media (max-width: 820px) {
   .header-actions { margin-left: auto; }
-  .header-utility, .theme-toggle, .header-contact { display: none; }
+  .header-utility, .theme-toggle, .header-contact, .colorblind-toggle { display: none; }
   .mobile-nav { background: var(--header-bg); }
-  .mobile-nav.is-open { max-height: 360px; border-top-color: rgba(123, 217, 243, 0.2); }
+  .mobile-nav.is-open { max-height: 400px; border-top-color: rgba(123, 217, 243, 0.2); }
   .mobile-nav-content .nav-link { color: #d8f0fb; }
-  .mobile-admin, .mobile-theme-toggle { display: inline-flex; align-items: center; gap: 8px; border: 0; background: transparent; color: var(--sky); font-size: 0.88rem; font-weight: 700; }
+  .mobile-admin, .mobile-theme-toggle, .mobile-colorblind-toggle { display: inline-flex; align-items: center; gap: 8px; border: 0; background: transparent; color: var(--sky); font-size: 0.88rem; font-weight: 700; }
   .mobile-contact { background: var(--coral); }
   .hero-section { padding: 44px 0 0; background-position: 61% center; }
   .hero-grid.hero-grid-solo { min-height: 450px; }
   .mascot-guide { right: 11px; left: auto; }
+  .mascot-button { width: 84px; height: 84px; }
+  .mascot-avatar-image { width: 128%; height: 128%; margin: -21% -14% 0; }
   #vlibras-root [vw-access-button] { right: 11px !important; bottom: 250px !important; }
   .back-to-top { bottom: 12px; left: 11px; }
   .reception-welcome { padding: 14px; align-items: end; }
@@ -575,9 +579,13 @@ body { background: var(--paper); transition: background 180ms var(--ease-out), c
 .dark .newsletter-feedback.success { color: #a5f2d0; }
 .dark .newsletter-feedback.error { color: #ffd0c4; }
 
-/* Guia maior, mas com uma área fixa para o VLibras e o botão Topo. */
-.mascot-button { width: 116px; height: 116px; }
-.mascot-avatar-image { width: 137%; height: 137%; margin: -24% -18% 0; }
+/* Guia maior no desktop/totem, com espaço reservado pro VLibras e o botão Topo.
+   Só se aplica a partir de 821px — abaixo disso, os media queries de
+   mobile (acima) já definiram os tamanhos corretos. */
+@media (min-width: 821px) {
+  .mascot-button { width: 124px; height: 124px; }
+  .mascot-avatar-image { width: 139%; height: 139%; margin: -25% -19% 0; }
+}
 .mascot-message { width: min(310px, calc(100vw - 42px)); }
 
 /* About hero com foto institucional discreta e conteúdo histórico próprio. */
@@ -655,6 +663,11 @@ body { background: var(--paper); transition: background 180ms var(--ease-out), c
 .admin-muted { color: var(--muted); font-size: 0.83rem; }
 .admin-gate-loading { min-height: 100vh; display: grid; place-items: center; background: var(--paper); color: var(--ink); }
 
+@media (max-width: 900px) {
+  .admin-stats { grid-template-columns: repeat(2, 1fr); }
+  .admin-course-form { grid-template-columns: repeat(3, 1fr); }
+}
+
 @media (max-width: 820px) {
   .site-page { padding-top: 79px; }
   .site-header { top: 9px; width: calc(100% - 22px); border-radius: 15px; }
@@ -685,8 +698,8 @@ body { background: var(--paper); transition: background 180ms var(--ease-out), c
   .newsletter-form { grid-template-columns: 1fr; }
   .newsletter-form .light-action { width: 100%; }
   .newsletter-help, .newsletter-feedback { grid-column: auto; }
-  .mascot-button { width: 94px; height: 94px; }
-  .mascot-avatar-image { width: 137%; height: 137%; }
+  .mascot-button { width: 60px; height: 60px; }
+  .mascot-avatar-image { width: 128%; height: 128%; margin: -21% -14% 0; }
   .history-grid { grid-template-columns: 1fr; gap: 38px; }
   .history-photo-wrap { width: min(100%, 290px); margin: 0 auto; }
   .history-copy { text-align: left; }
@@ -764,18 +777,6 @@ body { background: var(--paper); transition: background 180ms var(--ease-out), c
   }
   .newsletter-form {
     grid-template-columns: minmax(0, 1fr) minmax(150px, auto);
-  }
-}
-
-@media (min-width: 821px) {
-  .mascot-button {
-    width: 124px;
-    height: 124px;
-  }
-  .mascot-avatar-image {
-    width: 139%;
-    height: 139%;
-    margin: -25% -19% 0;
   }
 }
 
@@ -998,8 +999,6 @@ body { background: var(--paper); transition: background 180ms var(--ease-out), c
   height: 100%;
   overflow: hidden;
   pointer-events: none;
-  /* Máscara: dilui a borda esquerda até ficar transparente, em vez
-     de a foto começar de repente com uma borda reta e dura. */
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 22%, black 55%);
   mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 22%, black 55%);
 }
@@ -1034,15 +1033,15 @@ body { background: var(--paper); transition: background 180ms var(--ease-out), c
   z-index: 3;
 }
 
+@media (max-width: 820px) {
+  .hero-carousel { display: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-carousel-slide { transition: opacity 400ms ease; transform: none !important; }
 }
 /* ============================================================
  * Modo daltônico — versão de alto impacto visual
- * Paleta Okabe-Ito (laranja #D55E00 + azul #0072B2) + contraste
- * bem mais alto + bordas grossas em elementos interativos, pra
- * ficar claramente perceptível mesmo pra quem não é daltônico
- * (importante pra demonstrar a funcionalidade).
  * ============================================================ */
 
 .colorblind {
@@ -1072,8 +1071,6 @@ body { background: var(--paper); transition: background 180ms var(--ease-out), c
   --white: #0d1f30;
 }
 
-/* Bordas grossas em tudo que é clicável — reforço visual que não
-   depende de cor nenhuma pra indicar "isso é interativo". */
 .colorblind .primary-action,
 .colorblind .secondary-action,
 .colorblind .light-action,
@@ -1098,7 +1095,6 @@ body { background: var(--paper); transition: background 180ms var(--ease-out), c
 .colorblind .nav-link.active::after { background: var(--coral); height: 3px; }
 .colorblind .course-highlight { background: var(--coral); color: #fff; font-weight: 800; }
 
-/* Sublinhado em links de texto corrido — não depende só da cor. */
 .colorblind .footer-group a,
 .colorblind .text-link,
 .colorblind .outline-link,
@@ -1108,13 +1104,11 @@ body { background: var(--paper); transition: background 180ms var(--ease-out), c
   font-weight: 700;
 }
 
-/* Anéis de foco grossos, pra navegação por teclado. */
 .colorblind *:focus-visible {
   outline: 3px solid var(--sky);
   outline-offset: 2px;
 }
 
-/* Badges e mensagens de status: laranja/azul + peso maior. */
 .colorblind .admin-course-badge.is-disponivel { background: var(--sky); color: #fff; }
 .colorblind .admin-course-badge.is-indisponivel { background: var(--coral); color: #fff; }
 .colorblind .admin-role-badge.is-admin { background: var(--sky); color: #fff; }
@@ -1123,8 +1117,6 @@ body { background: var(--paper); transition: background 180ms var(--ease-out), c
 .colorblind .admin-feedback.error,
 .colorblind .newsletter-feedback.error { color: var(--coral); font-weight: 800; }
 
-/* Indicador flutuante — confirma visualmente que o modo está
-   ativo, inserido automaticamente pelo acessibilidade.js. */
 .colorblind-indicator {
   position: fixed;
   z-index: 9999;
@@ -1170,14 +1162,11 @@ body { background: var(--paper); transition: background 180ms var(--ease-out), c
 .course-audio-toggle:hover { transform: scale(1.06); }
 .course-audio-toggle.is-falando { background: var(--coral); color: var(--white); }
 
-/* Botão de áudio "com texto", usado nas páginas de detalhe
-   (reaproveita o visual do botão secundário já existente). */
 .audio-toggle-inline.is-falando {
   background: var(--coral);
   color: var(--white);
   border-color: var(--coral);
 }
-/* ---------------------- Botão de áudio dentro da mensagem do mascote ---------------------- */
 .mascot-audio-toggle {
   position: absolute;
   top: 10px;
