@@ -165,6 +165,37 @@ img { display: block; max-width: 100%; }
 .value-card { min-height: 260px; padding: 27px 26px; border: 1px solid var(--line); background: var(--white); }
 .value-card.featured-value { border-color: var(--ink); background: var(--ink); color: var(--white); }
 .value-card > span { color: var(--coral); font-family: "Barlow Condensed", sans-serif; font-size: 1.35rem; font-weight: 800; }
+.value-card.featured-value {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--white);
+}
+
+.featured-value p {
+  color: #cad6df;
+}
+
+/* MODO ESCURO */
+.dark .course-card,
+.dark .catalog-search,
+.dark .area-filter-button.active,
+.dark .value-card {
+  background: var(--white);
+}
+
+.dark .course-area-label {
+  background: #eaf7ff;
+  color: #06375d;
+}
+
+.dark .course-body h3,
+.dark .course-footer,
+.dark .catalog-search input {
+  color: var(--ink);
+}
+
+/* Corrige o título "Missão" no modo escuro */
+
 .value-card h3 { margin: 42px 0 8px; font-family: "Barlow Condensed", sans-serif; font-size: 2rem; line-height: 1; }
 .value-card p { margin: 0; color: var(--muted); font-size: 0.88rem; line-height: 1.62; }
 .featured-value p { color: #cad6df; }
@@ -442,7 +473,10 @@ body { background: var(--paper); transition: background 180ms var(--ease-out), c
 .dark .catalog-section, .dark .about-values { background: var(--paper); }
 .dark .course-card, .dark .catalog-search, .dark .area-filter-button.active, .dark .value-card { background: var(--white); }
 .dark .course-area-label { background: #eaf7ff; color: #06375d; }
-.dark .course-body h3, .dark .course-footer, .dark .catalog-search input { color: var(--ink); }
+.dark .course-body h3, .dark .course-footer, .dark .catalog-search input { color: var(--ink); } 
+.dark .value-card.featured-value {
+  color: #ffffff;
+}
 .dark .admin-access-card, .dark .welcome-content { background: #082c4d; color: #eff9ff; }
 .dark .admin-access-card p, .dark .welcome-content > p, .dark .welcome-answer p { color: #b5d6e8; }
 .dark .welcome-options button, .dark .welcome-answer { border-color: #245a7f; background: #0b3659; color: #e8f8ff; }
@@ -1182,4 +1216,8 @@ body { background: var(--paper); transition: background 180ms var(--ease-out), c
 .mascot-audio-toggle:hover,
 .mascot-audio-toggle.is-falando {
   color: var(--coral);
+}
+.value-card.featured-value h3,
+.value-card.featured-value span {
+  color: #ffffff;
 }

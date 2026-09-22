@@ -162,8 +162,26 @@ function preencherFormularioCurso(curso) {
   document.getElementById("curso-form-vagas").value = curso.vagas;
   document.getElementById("curso-form-destaque").value = curso.destaque || "";
   document.getElementById("curso-form-imagem").value = curso.imagemUrl;
-  document.getElementById("curso-form-descricao").value = curso.descricao;
-  document.getElementById("curso-form-dica").value = curso.dicaMascote;
+  document.getElementById("curso-form-descricao").value = curso.descricao || "";
+
+  document.getElementById("curso-form-texto-completo").value =
+    curso.textoCompleto || "";
+
+  document.getElementById("curso-form-perfil-profissional").value =
+    curso.perfilProfissional || "";
+
+  document.getElementById("curso-form-faixa-salarial").value =
+    curso.faixaSalarial || "";
+
+  document.getElementById("curso-form-carreiras").value =
+    curso.carreiras || "";
+
+  document.getElementById("curso-form-areas-atuacao").value =
+    curso.areasAtuacao || "";
+
+  document.getElementById("curso-form-dica").value =
+    curso.dicaMascote || "";
+
   document.getElementById("curso-form-disponivel").checked = curso.disponivel !== false;
 }
 
@@ -250,20 +268,59 @@ function iniciarFormularioCurso() {
 
   document.getElementById("formulario-curso").addEventListener("submit", async (evento) => {
     evento.preventDefault();
-    const corpo = {
-      titulo: document.getElementById("curso-form-titulo").value.trim(),
-      area: document.getElementById("curso-form-area").value,
-      nivel: document.getElementById("curso-form-nivel").value,
-      modalidade: document.getElementById("curso-form-modalidade").value,
-      cargaHoraria: document.getElementById("curso-form-carga").value.trim(),
-      turno: document.getElementById("curso-form-turno").value.trim(),
-      vagas: document.getElementById("curso-form-vagas").value.trim(),
-      destaque: document.getElementById("curso-form-destaque").value.trim() || null,
-      imagemUrl: document.getElementById("curso-form-imagem").value.trim(),
-      descricao: document.getElementById("curso-form-descricao").value.trim(),
-      dicaMascote: document.getElementById("curso-form-dica").value.trim(),
-      disponivel: document.getElementById("curso-form-disponivel").checked,
-    };
+
+  const corpo = {
+    titulo: document.getElementById("curso-form-titulo").value.trim(),
+
+    area: document.getElementById("curso-form-area").value,
+
+    nivel: document.getElementById("curso-form-nivel").value,
+
+    modalidade: document.getElementById("curso-form-modalidade").value,
+
+    cargaHoraria: document.getElementById("curso-form-carga").value.trim(),
+
+    turno: document.getElementById("curso-form-turno").value.trim(),
+
+    vagas: document.getElementById("curso-form-vagas").value.trim(),
+
+    destaque:
+      document.getElementById("curso-form-destaque").value.trim() || null,
+
+    imagemUrl:
+      document.getElementById("curso-form-imagem").value.trim(),
+
+    descricao:
+      document.getElementById("curso-form-descricao").value.trim(),
+
+    textoCompleto:
+      document.getElementById("curso-form-texto-completo").value.trim() || null,
+
+    perfilProfissional:
+      document
+        .getElementById("curso-form-perfil-profissional")
+        .value.trim() || null,
+
+    faixaSalarial:
+      document
+        .getElementById("curso-form-faixa-salarial")
+        .value.trim() || null,
+
+    carreiras:
+      document.getElementById("curso-form-carreiras").value.trim() || null,
+
+    areasAtuacao:
+      document
+        .getElementById("curso-form-areas-atuacao")
+        .value.trim() || null,
+
+    dicaMascote:
+      document.getElementById("curso-form-dica").value.trim(),
+
+    disponivel:
+      document.getElementById("curso-form-disponivel").checked,
+  };
+
 
     try {
       const url = cursoEmEdicaoId ? `/api/cursos/${cursoEmEdicaoId}` : "/api/cursos";

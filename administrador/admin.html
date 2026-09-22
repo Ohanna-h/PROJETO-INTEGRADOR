@@ -147,10 +147,50 @@
             <label class="wide-field">URL ou caminho da imagem<input required id="curso-form-imagem" placeholder="/imagens/cursos/nome-do-arquivo.jpg" /></label>
             <label class="wide-field">Descrição<textarea required minlength="10" id="curso-form-descricao" rows="3"></textarea></label>
             <label class="wide-field">Mensagem do Stênio<textarea required minlength="10" id="curso-form-dica" rows="2"></textarea></label>
-            <button class="primary-action admin-submit" type="submit" id="botao-salvar-curso">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
-              Adicionar curso
-            </button>
+            <label class="wide-field">
+            Texto completo do curso
+              <textarea
+                id="curso-form-texto-completo"
+                rows="6"
+                placeholder="Digite a apresentação completa do curso..."
+              ></textarea>
+            </label>
+
+            <label class="wide-field">
+            Perfil profissional
+              <textarea
+                id="curso-form-perfil-profissional"
+                rows="5"
+                placeholder="Descreva o perfil profissional formado pelo curso..."
+              ></textarea>
+            </label>
+
+            <label class="wide-field">
+            Faixa salarial
+              <input
+                id="curso-form-faixa-salarial"
+                placeholder="Ex.: R$ 2.140 a R$ 7.012 por mês"
+              />
+            </label>
+
+            <label class="wide-field">
+            Possibilidades de carreira
+            <textarea
+              id="curso-form-carreiras"
+              rows="4"
+              placeholder="Separe cada possibilidade por vírgula. Ex.: Técnico, Analista, Supervisor"
+            ></textarea>
+            </label>
+
+            <label class="wide-field">
+            Áreas de atuação
+            <textarea
+              id="curso-form-areas-atuacao"
+              rows="4"
+              placeholder="Separe cada área por vírgula. Ex.: Indústrias, manutenção, automação"
+            ></textarea>
+            </label>
+
           </form>
           <p id="curso-feedback" class="admin-feedback" role="status" hidden></p>
 
@@ -177,6 +217,11 @@
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" /><polyline points="17 21 17 13 7 13 7 21" /><polyline points="7 3 7 8 15 8" /></svg>
               Salvar conteúdo
             </button>
+            <button class="primary-action admin-submit" type="submit" id="botao-salvar-curso">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+              Adicionar curso
+            </button>
+
           </form>
           <p id="conteudo-feedback" class="admin-feedback" role="status" hidden></p>
         </section>
