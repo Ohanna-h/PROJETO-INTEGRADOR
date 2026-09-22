@@ -1,234 +1,908 @@
 <!doctype html>
+
 <html lang="pt-BR">
+
 <head>
+
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Admin | SENAI Stênio Lopes</title>
+
   <link rel="icon" type="image/png" sizes="64x64" href="/imagens/logos/favicon.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="/css/estilo.css" />
+
   <link rel="stylesheet" href="admin_style.css" />
+
   <style>
-    .admin-course-status-bar { margin-top: 8px; padding: 8px 12px; border-radius: 8px; background: var(--sky-soft); color: var(--ink-soft); font-size: 0.78rem; font-weight: 700; width: fit-content; }
-    .admin-course-badge { display: inline-block; margin-top: 3px; padding: 2px 8px; border-radius: 999px; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; }
-    .admin-course-badge.is-disponivel { background: rgba(16, 148, 100, 0.14); color: #0d7d54; }
-    .admin-course-badge.is-indisponivel { background: rgba(191, 67, 46, 0.14); color: #bf432e; }
-    .admin-course-row-indisponivel { opacity: 0.62; }
-    .admin-course-row-indisponivel img { filter: grayscale(0.5); }
+    .admin-course-status-bar {
+      margin-top: 8px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: var(--sky-soft);
+      color: var(--ink-soft);
+      font-size: 0.78rem;
+      font-weight: 700;
+      width: fit-content;
+    }
+
+    .admin-course-badge {
+      display: inline-block;
+      margin-top: 3px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .admin-course-badge.is-disponivel {
+      background: rgba(16, 148, 100, 0.14);
+      color: #0d7d54;
+    }
+
+    .admin-course-badge.is-indisponivel {
+      background: rgba(191, 67, 46, 0.14);
+      color: #bf432e;
+    }
+
+    .admin-course-row-indisponivel {
+      opacity: 0.62;
+    }
+
+    .admin-course-row-indisponivel img {
+      filter: grayscale(0.5);
+    }
   </style>
+
 </head>
+
 <body>
 
   <!-- ===================== TELA DE LOGIN ===================== -->
-  <div class="site-page admin-page" id="tela-login">
-    <main class="admin-main">
-      <section class="admin-access-card admin-login-card" aria-labelledby="admin-login-title">
-        <div class="admin-access-icon">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
-        </div>
-        <span class="section-kicker">Login protegido</span>
-        <h1 id="admin-login-title">Acesso da equipe</h1>
-        <p>Entre com sua conta de administrador para gerenciar cursos, textos institucionais e o catálogo da plataforma.</p>
 
-        <form id="formulario-login" class="admin-course-form" style="grid-template-columns: 1fr; margin-top: 10px;">
-          <label class="wide-field">E-mail<input type="email" id="login-email" required placeholder="seu.email@senai.br" /></label>
-          <label class="wide-field">Senha<input type="password" id="login-senha" required placeholder="••••••••" /></label>
-          <button class="primary-action admin-submit" type="submit">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
+  <div class="site-page admin-page" id="tela-login">
+
+    <main class="admin-main">
+
+      <section
+        class="admin-access-card admin-login-card"
+        aria-labelledby="admin-login-title"
+      >
+
+        <div class="admin-access-icon">
+
+          <svg
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <rect x="3" y="11" width="18" height="11" rx="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+
+        </div>
+
+        <span class="section-kicker">Login protegido</span>
+
+        <h1 id="admin-login-title">Acesso da equipe</h1>
+
+        <p>
+          Entre com sua conta de administrador para gerenciar cursos,
+          textos institucionais e o catálogo da plataforma.
+        </p>
+
+        <form
+          id="formulario-login"
+          class="admin-course-form"
+          style="grid-template-columns: 1fr; margin-top: 10px;"
+        >
+
+          <label class="wide-field">
+            E-mail
+            <input
+              type="email"
+              id="login-email"
+              required
+              placeholder="seu.email@senai.br"
+            />
+          </label>
+
+          <label class="wide-field">
+            Senha
+            <input
+              type="password"
+              id="login-senha"
+              required
+              placeholder="••••••••"
+            />
+          </label>
+
+          <button
+            class="primary-action admin-submit"
+            type="submit"
+          >
+
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <rect x="3" y="11" width="18" height="11" rx="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+
             Entrar
+
           </button>
+
         </form>
-        <p id="login-erro" class="admin-feedback error" role="status" hidden></p>
+
+        <p
+          id="login-erro"
+          class="admin-feedback error"
+          role="status"
+          hidden
+        ></p>
+
         <a class="admin-login-back" href="/">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
+
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <line x1="19" y1="12" x2="5" y2="12" />
+            <polyline points="12 19 5 12 12 5" />
+          </svg>
+
           Voltar para a plataforma
+
         </a>
+
       </section>
+
     </main>
+
   </div>
 
+
   <!-- ===================== PAINEL (após login) ===================== -->
-  <div class="site-page admin-page" id="tela-painel" hidden>
+
+  <div
+    class="site-page admin-page"
+    id="tela-painel"
+    hidden
+  >
+
     <header class="site-header">
+
       <div class="site-shell header-inner">
-        <a href="/" class="brand-link" aria-label="SENAI Stênio Lopes — página Inicial">
-          <img class="brand-logo" src="/imagens/logos/logo-senai.png" alt="SENAI Stênio Lopes" />
+
+        <a
+          href="/"
+          class="brand-link"
+          aria-label="SENAI Stênio Lopes — página Inicial"
+        >
+
+          <img
+            class="brand-logo"
+            src="/imagens/logos/logo-senai.png"
+            alt="SENAI Stênio Lopes"
+          />
+
         </a>
-        <div class="header-actions" style="margin-left: auto;">
-          <a href="/" class="header-utility header-home">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><path d="M9 22V12h6v10" /></svg>
+
+        <div
+          class="header-actions"
+          style="margin-left: auto;"
+        >
+
+          <a
+            href="/"
+            class="header-utility header-home"
+          >
+
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <path d="M9 22V12h6v10" />
+            </svg>
+
             <span>Ver plataforma</span>
+
           </a>
+
         </div>
+
       </div>
+
     </header>
 
+
     <main class="admin-dashboard">
+
       <div class="site-shell">
+
         <div class="admin-dashboard-head">
+
           <div>
+
             <span class="section-kicker">Painel protegido</span>
-            <h1>Olá, <span id="nome-admin-logado">admin</span>.</h1>
-            <p>Gerencie o conteúdo que aparece na plataforma de recepção.</p>
+
+            <h1>
+              Olá, <span id="nome-admin-logado">admin</span>.
+            </h1>
+
+            <p>
+              Gerencie o conteúdo que aparece na plataforma de recepção.
+            </p>
+
           </div>
+
+
           <div class="admin-dashboard-actions">
-            <a class="admin-back-link" href="/">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
+
+            <a
+              class="admin-back-link"
+              href="/"
+            >
+
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+              </svg>
+
               Ver plataforma
+
             </a>
-            <button class="admin-logout-button" type="button" id="botao-sair">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" /></svg>
+
+
+            <button
+              class="admin-logout-button"
+              type="button"
+              id="botao-sair"
+            >
+
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" />
+              </svg>
+
               Sair
+
             </button>
+
           </div>
+
         </div>
+
 
         <div class="admin-stats">
+
           <div>
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /></svg>
-            <span><strong id="contador-cursos-admin">0</strong> cursos no catálogo</span>
+
+            <svg
+              width="19"
+              height="19"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+            </svg>
+
+            <span>
+              <strong id="contador-cursos-admin">0</strong>
+              cursos no catálogo
+            </span>
+
           </div>
+
+
           <div>
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg>
-            <span><strong id="contador-textos-admin">0</strong> textos editáveis</span>
+
+            <svg
+              width="19"
+              height="19"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+            </svg>
+
+            <span>
+              <strong id="contador-textos-admin">0</strong>
+              textos editáveis
+            </span>
+
           </div>
+
         </div>
 
-        <div class="admin-panel-tabs" role="tablist" aria-label="Seções administrativas">
-          <button class="active" type="button" data-painel="cursos">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /></svg>
+
+        <div
+          class="admin-panel-tabs"
+          role="tablist"
+          aria-label="Seções administrativas"
+        >
+
+          <button
+            class="active"
+            type="button"
+            data-painel="cursos"
+          >
+
+            <svg
+              width="17"
+              height="17"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+            </svg>
+
             Cursos
+
           </button>
-          <button type="button" data-painel="conteudo">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg>
+
+
+          <button
+            type="button"
+            data-painel="conteudo"
+          >
+
+            <svg
+              width="17"
+              height="17"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+            </svg>
+
             Conteúdo
+
           </button>
+
         </div>
 
-        <!-- PAINEL: CURSOS -->
-        <section class="admin-panel" id="painel-cursos">
+
+        <!-- ===================== PAINEL: CURSOS ===================== -->
+
+        <section
+          class="admin-panel"
+          id="painel-cursos"
+        >
+
           <div class="admin-panel-heading">
-           <div>
-            <span class="section-kicker">Catálogo</span>
-            <h2>Adicionar e editar cursos</h2>
-            <p>As alterações ficam disponíveis na página Inicial depois de salvas.</p>
-            <p id="barra-status-cursos" class="admin-course-status-bar">Carregando última atualização...</p>
-          </div>
-            <button class="admin-cancel-button" type="button" id="botao-cancelar-edicao" hidden>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+
+            <div>
+
+              <span class="section-kicker">Catálogo</span>
+
+              <h2>Adicionar e editar cursos</h2>
+
+              <p>
+                As alterações ficam disponíveis na página Inicial depois de salvas.
+              </p>
+
+              <p
+                id="barra-status-cursos"
+                class="admin-course-status-bar"
+              >
+                Carregando última atualização...
+              </p>
+
+            </div>
+
+
+            <button
+              class="admin-cancel-button"
+              type="button"
+              id="botao-cancelar-edicao"
+              hidden
+            >
+
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+
               Cancelar edição
+
             </button>
+
           </div>
 
-          <form class="admin-course-form" id="formulario-curso">
-            <input type="hidden" id="curso-id" />
-            <label>Título do curso<input required minlength="3" id="curso-form-titulo" /></label>
-            <label>Área<select required id="curso-form-area">
-              <option>Eletroeletrônica</option><option>Metalmecânica</option>
-              <option>Tecnologia da Informação</option><option>Refrigeração</option><option>Automação</option>
-              <option>Vestuário e Couro</option><option>Alimentos</option>
-            </select></label>
-            <label>Nível<select required id="curso-form-nivel">
-              <option>Técnico</option><option>Qualificação</option><option>Aperfeiçoamento</option>
-            </select></label>
-            <label>Modalidade<select required id="curso-form-modalidade">
-              <option>Presencial</option><option>EAD</option>
-            </select></label>
-            <label>Carga horária<input required id="curso-form-carga" placeholder="Ex.: 120h" /></label>
-            <label>Turno<input required id="curso-form-turno" /></label>
-            <label>Vagas<input required id="curso-form-vagas" /></label>
-            <label>Destaque <span class="field-hint">opcional</span><input id="curso-form-destaque" placeholder="Ex.: Alta demanda" /></label>
-            <label style="display:flex; align-items:center; gap:8px; flex-direction:row;">
-              <input type="checkbox" id="curso-form-disponivel" checked style="width:auto; min-height:auto;" />
+
+          <form
+            class="admin-course-form"
+            id="formulario-curso"
+          >
+
+            <input
+              type="hidden"
+              id="curso-id"
+            />
+
+
+            <label>
+              Título do curso
+              <input
+                required
+                minlength="3"
+                id="curso-form-titulo"
+              />
+            </label>
+
+
+            <label>
+              Área
+
+              <select
+                required
+                id="curso-form-area"
+              >
+
+                <option>Eletroeletrônica</option>
+                <option>Metalmecânica</option>
+                <option>Tecnologia da Informação</option>
+                <option>Refrigeração</option>
+                <option>Automação</option>
+                <option>Vestuário e Couro</option>
+                <option>Alimentos</option>
+
+              </select>
+
+            </label>
+
+
+            <label>
+              Nível
+
+              <select
+                required
+                id="curso-form-nivel"
+              >
+
+                <option>Técnico</option>
+                <option>Qualificação</option>
+                <option>Aperfeiçoamento</option>
+
+              </select>
+
+            </label>
+
+
+            <label>
+              Modalidade
+
+              <select
+                required
+                id="curso-form-modalidade"
+              >
+
+                <option>Presencial</option>
+                <option>EAD</option>
+
+              </select>
+
+            </label>
+
+
+            <label>
+              Carga horária
+
+              <input
+                required
+                id="curso-form-carga"
+                placeholder="Ex.: 120h"
+              />
+
+            </label>
+
+
+            <label>
+              Turno
+
+              <input
+                required
+                id="curso-form-turno"
+              />
+
+            </label>
+
+
+            <label>
+              Vagas
+
+              <input
+                required
+                id="curso-form-vagas"
+              />
+
+            </label>
+
+
+            <label>
+              Destaque
+              <span class="field-hint">opcional</span>
+
+              <input
+                id="curso-form-destaque"
+                placeholder="Ex.: Alta demanda"
+              />
+
+            </label>
+
+
+            <label
+              style="display:flex; align-items:center; gap:8px; flex-direction:row;"
+            >
+
+              <input
+                type="checkbox"
+                id="curso-form-disponivel"
+                checked
+                style="width:auto; min-height:auto;"
+              />
+
               Disponível no catálogo público
-            </label>            
-            <label class="wide-field">URL ou caminho da imagem<input required id="curso-form-imagem" placeholder="/imagens/cursos/nome-do-arquivo.jpg" /></label>
-            <label class="wide-field">Descrição<textarea required minlength="10" id="curso-form-descricao" rows="3"></textarea></label>
-            <label class="wide-field">Mensagem do Stênio<textarea required minlength="10" id="curso-form-dica" rows="2"></textarea></label>
+
+            </label>
+
+
             <label class="wide-field">
-            Texto completo do curso
+
+              URL ou caminho da imagem
+
+              <input
+                required
+                id="curso-form-imagem"
+                placeholder="/imagens/cursos/nome-do-arquivo.jpg"
+              />
+
+            </label>
+
+
+            <label class="wide-field">
+
+              Descrição
+
+              <textarea
+                required
+                minlength="10"
+                id="curso-form-descricao"
+                rows="3"
+              ></textarea>
+
+            </label>
+
+
+            <label class="wide-field">
+
+              Mensagem do Stênio
+
+              <textarea
+                required
+                minlength="10"
+                id="curso-form-dica"
+                rows="2"
+              ></textarea>
+
+            </label>
+
+
+            <label class="wide-field">
+
+              Texto completo do curso
+
               <textarea
                 id="curso-form-texto-completo"
                 rows="6"
                 placeholder="Digite a apresentação completa do curso..."
               ></textarea>
+
             </label>
 
+
             <label class="wide-field">
-            Perfil profissional
+
+              Perfil profissional
+
               <textarea
                 id="curso-form-perfil-profissional"
                 rows="5"
                 placeholder="Descreva o perfil profissional formado pelo curso..."
               ></textarea>
+
             </label>
 
+
             <label class="wide-field">
-            Faixa salarial
+
+              Faixa salarial
+
               <input
                 id="curso-form-faixa-salarial"
                 placeholder="Ex.: R$ 2.140 a R$ 7.012 por mês"
               />
+
             </label>
 
-            <label class="wide-field">
-            Possibilidades de carreira
-            <textarea
-              id="curso-form-carreiras"
-              rows="4"
-              placeholder="Separe cada possibilidade por vírgula. Ex.: Técnico, Analista, Supervisor"
-            ></textarea>
-            </label>
 
             <label class="wide-field">
-            Áreas de atuação
-            <textarea
-              id="curso-form-areas-atuacao"
-              rows="4"
-              placeholder="Separe cada área por vírgula. Ex.: Indústrias, manutenção, automação"
-            ></textarea>
+
+              Possibilidades de carreira
+
+              <textarea
+                id="curso-form-carreiras"
+                rows="4"
+                placeholder="Separe cada possibilidade por vírgula. Ex.: Técnico, Analista, Supervisor"
+              ></textarea>
+
             </label>
+
+
+            <label class="wide-field">
+
+              Áreas de atuação
+
+              <textarea
+                id="curso-form-areas-atuacao"
+                rows="4"
+                placeholder="Separe cada área por vírgula. Ex.: Indústrias, manutenção, automação"
+              ></textarea>
+
+            </label>
+
+
+            <button
+              class="primary-action admin-submit"
+              type="submit"
+              id="botao-salvar-curso"
+            >
+
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+
+                <path
+                  d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"
+                />
+
+              </svg>
+
+              Adicionar curso
+
+            </button>
 
           </form>
-          <p id="curso-feedback" class="admin-feedback" role="status" hidden></p>
+
+
+          <p
+            id="curso-feedback"
+            class="admin-feedback"
+            role="status"
+            hidden
+          ></p>
+
 
           <div class="admin-course-list">
-            <div class="list-heading"><h3>Cursos cadastrados</h3><span id="contador-lista-cursos">0 itens</span></div>
+
+            <div class="list-heading">
+
+              <h3>Cursos cadastrados</h3>
+
+              <span id="contador-lista-cursos">
+                0 itens
+              </span>
+
+            </div>
+
             <div id="lista-cursos"></div>
+
           </div>
+
         </section>
 
-        <!-- PAINEL: CONTEÚDO -->
-        <section class="admin-panel" id="painel-conteudo" hidden>
+
+        <!-- ===================== PAINEL: CONTEÚDO ===================== -->
+
+        <section
+          class="admin-panel"
+          id="painel-conteudo"
+          hidden
+        >
+
           <div class="admin-panel-heading">
+
             <div>
-              <span class="section-kicker">Textos da plataforma</span>
+
+              <span class="section-kicker">
+                Textos da plataforma
+              </span>
+
               <h2>Editar conteúdo institucional</h2>
-              <p>Atualize os textos principais sem alterar o código.</p>
+
+              <p>
+                Atualize os textos principais sem alterar o código.
+              </p>
+
             </div>
+
           </div>
-          <form class="admin-content-form" id="formulario-conteudo">
-            <label>Letreiro do hero<textarea required id="conteudo-homeEyebrow" rows="2"></textarea></label>
-            <label>Título principal<textarea required id="conteudo-homeTitle" rows="2"></textarea></label>
-            <label>Descrição principal<textarea required id="conteudo-homeDescription" rows="3"></textarea></label>
-            <button class="primary-action admin-submit" type="submit">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" /><polyline points="17 21 17 13 7 13 7 21" /><polyline points="7 3 7 8 15 8" /></svg>
+
+
+          <form
+            class="admin-content-form"
+            id="formulario-conteudo"
+          >
+
+            <label>
+              Letreiro do hero
+
+              <textarea
+                required
+                id="conteudo-homeEyebrow"
+                rows="2"
+              ></textarea>
+
+            </label>
+
+
+            <label>
+              Título principal
+
+              <textarea
+                required
+                id="conteudo-homeTitle"
+                rows="2"
+              ></textarea>
+
+            </label>
+
+
+            <label>
+              Descrição principal
+
+              <textarea
+                required
+                id="conteudo-homeDescription"
+                rows="3"
+              ></textarea>
+
+            </label>
+
+
+            <button
+              class="primary-action admin-submit"
+              type="submit"
+            >
+
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+
+                <path
+                  d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"
+                />
+
+                <polyline points="17 21 17 13 7 13 7 21" />
+
+                <polyline points="7 3 7 8 15 8" />
+
+              </svg>
+
               Salvar conteúdo
-            </button>
-            <button class="primary-action admin-submit" type="submit" id="botao-salvar-curso">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
-              Adicionar curso
+
             </button>
 
           </form>
-          <p id="conteudo-feedback" class="admin-feedback" role="status" hidden></p>
+
+
+          <p
+            id="conteudo-feedback"
+            class="admin-feedback"
+            role="status"
+            hidden
+          ></p>
+
         </section>
+
       </div>
+
     </main>
+
   </div>
 
+
   <script src="admin.js"></script>
+
 </body>
+
 </html>
