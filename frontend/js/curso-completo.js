@@ -26,11 +26,23 @@ async function buscarCurso(id) {
 function preencherListaDeTags(elementoId, itens) {
   const container = document.getElementById(elementoId);
   container.innerHTML = "";
-  const lista = Array.isArray(itens) ? itens : [];
+
+  let lista = [];
+
+  if (Array.isArray(itens)) {
+    lista = itens;
+  } else if (typeof itens === "string") {
+    lista = itens
+      .split(",")
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
+
   if (lista.length === 0) {
     container.innerHTML = '<span class="tag">Em atualização</span>';
     return;
   }
+
   for (const item of lista) {
     const tag = document.createElement("span");
     tag.className = "tag";
