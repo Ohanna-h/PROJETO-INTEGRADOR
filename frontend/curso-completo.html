@@ -146,12 +146,44 @@
 
     <!-- ===================== GUIA (MASCOTE) ===================== -->
     <aside class="mascot-guide mascot-mood-thinkingHappy" id="guia-mascote" aria-live="polite">
-      <div class="mascot-message mascot-message-animated" id="mensagem-mascote-caixa">
-        <button type="button" id="botao-audio-mascote" class="mascot-audio-toggle" aria-label="Ouvir mensagem do Stênio">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-        </button>
-        <button class="mascot-close" type="button" id="botao-fechar-mascote" aria-label="Fechar mensagem do Stênio">
-      </div>
+     <div class="mascot-message mascot-message-animated" id="mensagem-mascote-caixa">
+
+  <span class="mascot-label">Stênio explica</span>
+
+  <p id="mensagem-mascote-texto">
+    Confira as informações deste curso e veja se ele combina com você!
+  </p>
+
+  <button
+    type="button"
+    id="botao-audio-mascote"
+    class="mascot-audio-toggle"
+    aria-label="Ouvir mensagem do Stênio"
+  >
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      aria-hidden="true"
+    >
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+    </svg>
+  </button>
+
+  <button
+    class="mascot-close"
+    type="button"
+    id="botao-fechar-mascote"
+    aria-label="Fechar mensagem do Stênio"
+  >
+    ×
+  </button>
+
+</div>
       <button class="mascot-button" type="button" id="botao-mascote" aria-label="Abrir guia do Stênio">
         <img class="mascot-avatar-image" id="imagem-mascote" src="imagens/mascote/stenio-pensando-feliz.png" alt="" />
         <span class="mascot-status">
